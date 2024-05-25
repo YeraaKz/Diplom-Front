@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseDTO} from '../services/course/courseDTO';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CourseService} from '../services/course/course.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class MyCourseDetailsComponent implements OnInit {
     // Add more modules as needed
   ];
 
-  constructor(private route: ActivatedRoute, private courseService: CourseService) {
+  constructor(private route: ActivatedRoute, private router: Router, private courseService: CourseService) {
     this.courseId = this.route.snapshot.params['id'];
   }
 
@@ -65,6 +65,12 @@ export class MyCourseDetailsComponent implements OnInit {
         console.error('Error fetching course details:', error);
       }
     );
+  }
+
+  onLessonClick(lesson: any): void {
+    if (lesson.type === 'Презентация') {
+      this.router.navigate(['/presentation']);
+    }
   }
 
   toggleMenu(): void {

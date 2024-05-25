@@ -25,10 +25,10 @@
               (click)="filterCoursesByCategory('С нуля')">С нуля</button>
       <button class="category-btn"
               [class.active]="activeCategory === 'Начинающий'"
-              (click)="filterCoursesByCategory('Для начинающих')">Начинающий</button>
+              (click)="filterCoursesByCategory('Начинающий')">Начинающий</button>
       <button class="category-btn"
               [class.active]="activeCategory === 'Продвинутый'"
-              (click)="filterCoursesByCategory('Для продвинутых')">Продвинутый</button>
+              (click)="filterCoursesByCategory('Продвинутый')">Продвинутый</button>
     </div>
     <div class="courses-container">
       <ng-container *ngIf="filteredCourses$ | async as courses">

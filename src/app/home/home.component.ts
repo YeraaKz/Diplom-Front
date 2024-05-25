@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
-import {map, Observable} from "rxjs";
-import {ContactDTO} from "../services/contact/contactDTO";
-import {CourseDTO} from "../services/course/courseDTO";
-import {CourseService} from "../services/course/course.service";
-import {ContactService} from "../services/contact/contact.service";
-import {ToastrService} from "ngx-toastr";
+import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { ContactDTO } from '../services/contact/contactDTO';
+import { CourseDTO } from '../services/course/courseDTO';
+import { CourseService } from '../services/course/course.service';
+import { ContactService } from '../services/contact/contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   form: any = {};
   contactInfo: ContactDTO;
   courses$: Observable<CourseDTO[]>;
   filteredCourses$: Observable<CourseDTO[]>;
-  activeCategory = 'С нуля';
+  activeCategory: string = 'С нуля';
 
   constructor(private courseService: CourseService, private contactService: ContactService, private toastr: ToastrService) { }
 
@@ -31,8 +31,8 @@ export class HomeComponent {
       this.form.firstName,
       this.form.firstName + '@gmail.com',
       this.form.phones,
-      'Default way to contact');
-    console.log(this.contactInfo);
+      'Default way to contact'
+    );
 
     this.contactService.saveContact(this.contactInfo).subscribe({
       next: (response) => {

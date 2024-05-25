@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PdfService} from "../services/pdf/pdf.service";
 
 
 @Component({
@@ -16,9 +17,19 @@ import { Component } from '@angular/core';
   `
 })
 export class PdfViewerComponent {
-  pdfSrc: string = '/assets/sample.pdf';
+  pdfSrc: string;
 
-  constructor() {}
+  constructor(private pdfService: PdfService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pdfService.getPdfUrl('Overtime Ashimov Yerzhan.pdf').subscribe(
+      (url: string) => {
+        console.log(url);
+        this.pdfSrc = url;
+      },
+      (error) => {
+        console.error('Error loading PDF URL', error);
+      }
+    );
+  }
 }
