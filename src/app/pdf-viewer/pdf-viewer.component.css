@@ -2,13 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  width: 80vw; /* Установите нужную ширину контейнера */
+  height: 90vh; /* Установите нужную высоту контейнера */
+  margin: auto; /* Центрирование контейнера */
+  border: 1px solid #ccc; /* Добавьте границу, если нужно */
+  overflow: hidden; /* Скрытие переполнения */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавьте тень, если нужно */
+  background-color: #fff; /* Цвет фона контейнера */
 }
 
 pdf-viewer {
   max-width: 100%;
   max-height: 100%;
-  border: 1px solid #ccc;
 }
