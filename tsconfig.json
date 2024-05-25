@@ -2,6 +2,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["node"],
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/pdfjs-dist/types"
+    ],
     "strictPropertyInitialization": false,
     "outDir": "./dist/out-tsc",
     "strict": false,

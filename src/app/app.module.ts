@@ -25,6 +25,9 @@ import {TestResultsComponent} from "./test-results/test-results.component";
 import {MyCourseDetailsComponent} from "./my-course-details/my-course-details.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {httpInterceptorProviders} from "./services/token/auth-interceptor";
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import {httpInterceptorProviders} from "./services/token/auth-interceptor";
     TestComponent,
     TestResultsComponent,
     MyCourseDetailsComponent,
+    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,8 +62,11 @@ import {httpInterceptorProviders} from "./services/token/auth-interceptor";
       preventDuplicates: true,
     }),
     ReactiveFormsModule,
+    PdfViewerModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -16,6 +16,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {MyCourseDetailsComponent} from "./my-course-details/my-course-details.component";
 import {MyCoursesComponent} from "./my-courses/my-courses.component";
 import {AuthGuard} from "./auth.guard";
+import {PdfViewerComponent} from "./pdf-viewer/pdf-viewer.component";
 
 const routes: Routes = [
   {
@@ -91,7 +92,12 @@ const routes: Routes = [
     path: 'test-results',
     component: TestResultsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'presentation',
+    component: PdfViewerComponent
   }
+
 ];
 
 @NgModule({
