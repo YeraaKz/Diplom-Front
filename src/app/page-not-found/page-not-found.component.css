@@ -1,0 +1,39 @@
+/* Container Styling */
+.not-found-container {
+  text-align: center; /* Center-aligns the text */
+  max-width: 600px; /* Sets a max-width for the container */
+  margin: 0 auto; /* Centers the container horizontally */
+  padding: 150px 0 150px 0; /* Adds padding around the content */
+  font-family: 'Arial', sans-serif; /* Sets a basic, readable font */
+}
+
+/* 404 Error Code Styling */
+.not-found-container h1 {
+  font-size: 5em; /* Makes the 404 large */
+  margin-bottom: 0.5em; /* Adds some space below the 404 */
+  color: #333; /* Dark text color for contrast */
+}
+
+/* Paragraph Styling */
+.not-found-container p {
+  font-size: 1.2em; /* Slightly larger paragraph text */
+  color: #666; /* Medium-dark text color for readability */
+  line-height: 1.5; /* Adds space between lines of text */
+}
+
+/* Link Styling */
+.not-found-container .home-link {
+  display: inline-block; /* Allows margin and padding adjustments */
+  margin-top: 2em; /* Adds space above the link */
+  padding: 10px 20px; /* Padding around the text */
+  background-color: #007BFF; /* A bright, noticeable color */
+  color: #fff; /* White text for contrast */
+  text-decoration: none; /* Removes underline from link */
+  font-weight: bold; /* Makes the link text bold */
+  border-radius: 5px; /* Rounds the corners of the link */
+  transition: background-color 0.3s; /* Smooth background color transition on hover */
+}
+
+.not-found-container .home-link:hover {
+  background-color: #0056b3; /* Darkens the link on hover for a subtle effect */
+}

@@ -1,0 +1,44 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+footer {
+  background-color: #F8F8F8; /* Цвет фона футера */
+  color: #333; /* Цвет текста */
+  padding: 20px 0; /* Верхний и нижний отступы */
+  font-size: 14px; /* Размер шрифта */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Отступы справа и слева */
+}
+
+.footer-nav,
+.footer-social {
+  display: flex;
+  gap: 20px; /* Отступы между ссылками */
+}
+
+.footer-nav a,
+.footer-social a {
+  color: #333; /* Цвет ссылок */
+  text-decoration: none; /* Убрать подчеркивание */
+  transition: color 0.3s; /* Плавное изменение цвета */
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+  color: #007BFF; /* Цвет ссылок при наведении */
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 20px; /* Отступ сверху */
+}
+
+.social-link i {
+  font-size: 16px; /* Или другой размер, который вы предпочитаете */
+}
