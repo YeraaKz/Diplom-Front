@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../services/token/token-storage.service';
 import { UserService } from '../services/user/user.service'; // Предполагается что сервис назван UserService
@@ -9,7 +9,7 @@ import { UserService } from '../services/user/user.service'; // Предпола
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-
+  @ViewChild('fileInput') fileInput: ElementRef;
   info: any = {};
   imageUrl: string;
   private subscriptions = new Subscription();
@@ -31,7 +31,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log(this.imageUrl);
   }
 
-  loadUserImage() {
+  onCameraIconClick(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files[0];
+    const userId = this.tokenService.getId();
+    if (file) {
+      this.userService.uploadAvatar(file, userId).subscribe({
+        next: response => {
+          // После успешной загрузки обновляем изображение пользователя
+          this.loadUserImage();
+        },
+        error: err => {
+          console.error('Ошибка загрузки изображения:', err);
+        }
+      });
+    }
+  }
+
+  loadUserImage(): void {
     const userId = this.tokenService.getId();
     console.log(userId);
     this.subscriptions.add(this.userService.getUserImage().subscribe(imageUrl => {

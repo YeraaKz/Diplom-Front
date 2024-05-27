@@ -7,9 +7,10 @@
     <div class="profile-avatar-container">
       <div class="profile-avatar">
         <img *ngIf="imageUrl" [src]="imageUrl" alt="User image">
-        <div class="camera-icon" >
+        <div class="camera-icon" (click)="onCameraIconClick()">
           <i class="fas fa-camera"></i>
         </div>
+        <input type="file" accept="image/png" #fileInput style="display: none" (change)="onFileSelected($event)" />
       </div>
     </div>
     <h1>{{ info.name }}</h1>
