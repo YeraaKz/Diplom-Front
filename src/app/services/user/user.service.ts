@@ -57,10 +57,16 @@ export class UserService {
     return this.http.get<string>(`${this.baseUrl}/image`, { responseType: 'text' as 'json' });
   }
 
-  uploadAvatar(file: File, id: number): Observable<any> {
+  uploadFile(file: File): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('image', file);
-    formData.append('id', id.toString());
-    return this.http.post(this.uploadUrl, formData, );
+    formData.append('file', file, file.name);
+
+    // Опционально, если нужно добавить заголовки
+    const headers = new HttpHeaders({
+      'Accept': 'application/json'
+    });
+
+    // Отправка данных
+    return this.http.post(this. uploadUrl, formData, { headers });
   }
 }

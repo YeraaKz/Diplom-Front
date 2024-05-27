@@ -37,9 +37,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files[0];
-    const userId = this.tokenService.getId();
     if (file) {
-      this.userService.uploadAvatar(file, userId).subscribe({
+      this.userService.uploadFile(file).subscribe({
         next: response => {
           // После успешной загрузки обновляем изображение пользователя
           this.loadUserImage();
@@ -52,8 +51,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   loadUserImage(): void {
-    const userId = this.tokenService.getId();
-    console.log(userId);
     this.subscriptions.add(this.userService.getUserImage().subscribe(imageUrl => {
       this.imageUrl = imageUrl;
     }));
