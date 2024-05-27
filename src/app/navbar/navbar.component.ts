@@ -1,37 +1,43 @@
-import { Component } from '@angular/core';
-import {TokenStorageService} from "../services/token/token-storage.service";
-import {Router} from "@angular/router";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TokenStorageService } from "../services/token/token-storage.service";
+import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  roles: string[];
+export class NavbarComponent implements OnInit, OnDestroy {
+  roles: string[] = [];
   authority: string;
   name: string;
   dropdownOpen = false;
+  private subscriptions = new Subscription();
 
   constructor(private tokenStorage: TokenStorageService, private router: Router) { }
 
-  // tslint:disable-next-line:typedef
-  ngOnInit(){
-    if (this.tokenStorage.getToken()) {
-      this.roles = this.tokenStorage.getAuthorities();
-      this.name = this.tokenStorage.getUsername();
-      this.roles.every(role => {
-        if (role === 'ROLE_ADMIN') {
-          this.authority = 'admin';
-          return false;
-        } else if (role === 'ROLE_PM') {
-          this.authority = 'pm';
-          return false;
-        }
-        this.authority = 'user';
-        return true;
-      });
-    }
+  ngOnInit() {
+    this.subscriptions.add(this.tokenStorage.getToken().subscribe(token => {
+      if (token) {
+        this.subscriptions.add(this.tokenStorage.getAuthorities().subscribe(authorities => {
+          this.roles = authorities;
+          this.determineAuthority();
+        }));
+        this.subscriptions.add(this.tokenStorage.getUsername().subscribe(username => {
+          this.name = username;
+        }));
+      } else {
+        this.roles = [];
+        this.name = '';
+        this.authority = '';
+      }
+    }));
+  }
+
+  determineAuthority() {
+    this.authority = this.roles.find(role => role === 'ROLE_ADMIN') ? 'admin' :
+      this.roles.find(role => role === 'ROLE_PM') ? 'pm' : 'user';
   }
 
   toggleDropdown(): void {
@@ -40,6 +46,10 @@ export class NavbarComponent {
 
   logout() {
     this.tokenStorage.signOut();
-    window.location.reload();
+    this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

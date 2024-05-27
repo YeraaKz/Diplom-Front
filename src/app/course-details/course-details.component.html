@@ -26,9 +26,15 @@
               <span>Этот курс включает</span>
               <div class="includes-item">10 видео</div>
             </div>
-            <div class="buy-btn" *ngIf="authority">
-              <button class="buy-button" (click)="enrollInCourse(course.id)">Регистрация на курс</button>
+            <div *ngIf="authority; else signIn">
+              <button class="buy-btn" (click)="enrollInCourse(course.id)">Enroll in Course</button>
             </div>
+            <ng-template #signIn>
+              <div class="sign-in-prompt">
+                <p>You must sign in to enroll in a course.</p>
+                <button class="sign-in-button" routerLink="/auth/login">Sign In</button>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -74,7 +80,6 @@
           <div class="lesson-arrow"></div>
           <span class="lesson-title">Урок 3</span>
         </div>
-
       </ul>
     </div>
   </div>

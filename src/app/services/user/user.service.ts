@@ -21,6 +21,7 @@ export class UserService {
   private delete = 'http://localhost:8080/api/user/delete';
   private addUser = 'http://localhost:8080/api/user/save';
   private uploadUrl = 'http://localhost:8080/api/v1/user/upload';
+  private baseUrl = 'http://localhost:8080/api/v1/user';
 
   constructor(private http: HttpClient, private token: TokenStorageService) { }
 
@@ -50,6 +51,10 @@ export class UserService {
 
   saveUser(userUpdateDTO: UserUpdateDTO): Observable<any> {
     return this.http.post(this.addUser, userUpdateDTO);
+  }
+
+  getUserImage(): Observable<string> {
+    return this.http.get<string>(`${this.baseUrl}/image`, { responseType: 'text' as 'json' });
   }
 
   uploadAvatar(file: File, id: number): Observable<any> {

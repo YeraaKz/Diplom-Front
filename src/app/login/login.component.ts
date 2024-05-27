@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { TokenStorageService } from '../services/token/token-storage.service';
 import { AuthLoginInfo } from '../services/token/login-info';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -20,51 +21,48 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService,
-              private tokenStorage: TokenStorageService) { }
+              private tokenStorage: TokenStorageService,
+              private toastr: ToastrService) { }
 
-
-  // tslint:disable-next-line:typedef
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getAuthorities();
-
-      // Navigate after reload if a redirect path is stored
-      const redirectPath = localStorage.getItem('redirectAfterLogin');
-      if (redirectPath) {
-        this.router.navigate([redirectPath]);
-        localStorage.removeItem('redirectAfterLogin'); // Clear the stored path after navigating
+    this.tokenStorage.getToken().subscribe(token => {
+      if (token) {
+        this.isLoggedIn = true;
+        this.tokenStorage.getAuthorities().subscribe(roles => {
+          this.roles = roles;
+        });
       }
-    }
+    });
   }
 
-
-  // tslint:disable-next-line:typedef
   onSubmit() {
-    this.loginInfo = new AuthLoginInfo(
-      this.form.username,
-      this.form.password);
-
+    this.loginInfo = new AuthLoginInfo(this.form.username, this.form.password);
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.roles);
+        this.tokenStorage.saveId(data.id); // Сохранение ID пользователя
+        this.tokenStorage.saveEmail(data.email); // Сохранение email пользователя
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getAuthorities();
 
-        // Store the target URL to navigate after reloading
-        localStorage.setItem('redirectAfterLogin', '/profile');
-
-        // Reload the page to reset the application state
-        window.location.reload();
+        this.tokenStorage.getAuthorities().subscribe(roles => {
+          this.roles = roles;
+          this.router.navigate(['/profile']);
+        });
       },
       error => {
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
+        this.toastr.error(this.errorMessage);
       }
     );
+  }
+
+
+  checkCertificate(): void {
+    this.toastr.error("Error: The certificate has expired for this service.");
   }
 }

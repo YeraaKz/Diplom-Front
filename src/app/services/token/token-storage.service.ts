@@ -1,60 +1,93 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
+const ID_KEY = 'AuthId';
+const EMAIL_KEY = 'AuthEmail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
-  private roles: Array<string> = [];
-  constructor() { }
+  private rolesSubject: BehaviorSubject<Array<string>> = new BehaviorSubject([]);
+  private usernameSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  private tokenSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  private idSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  private emailSubject: BehaviorSubject<string> = new BehaviorSubject('');
 
-  // tslint:disable-next-line:typedef
-  signOut() {
+
+  constructor() {
+    this.loadInitialStorage();
+  }
+
+  // Загрузка начальных значений из sessionStorage
+  private loadInitialStorage() {
+    const authorities = sessionStorage.getItem(AUTHORITIES_KEY);
+    const username = sessionStorage.getItem(USERNAME_KEY);
+    const token = sessionStorage.getItem(TOKEN_KEY);
+    const id = sessionStorage.getItem(ID_KEY);
+    const email = sessionStorage.getItem(EMAIL_KEY);
+
+    this.rolesSubject.next(authorities ? JSON.parse(authorities) : []);
+    this.usernameSubject.next(username ?? '');
+    this.tokenSubject.next(token ?? '');
+    this.idSubject.next(id ?? '');
+    this.emailSubject.next(email ?? '');
+  }
+
+  public signOut() {
     window.sessionStorage.clear();
+    this.rolesSubject.next([]);
+    this.usernameSubject.next('');
+    this.tokenSubject.next('');
+    this.idSubject.next('');
+    this.emailSubject.next('');
   }
 
-  // tslint:disable-next-line:typedef
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
+    this.tokenSubject.next(token);
   }
 
-  public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+  public getToken(): Observable<string> {
+    return this.tokenSubject.asObservable();
   }
 
-  // tslint:disable-next-line:typedef
   public saveUsername(username: string) {
-    window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, username);
+    this.usernameSubject.next(username);
   }
 
-  public getUsername(): string {
-    return sessionStorage.getItem(USERNAME_KEY);
+  public getUsername(): Observable<string> {
+    return this.usernameSubject.asObservable();
   }
 
-  // tslint:disable-next-line:typedef
   public saveAuthorities(authorities: string[]) {
-    console.log('saveAuthorities');
-    console.log(authorities);
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    this.rolesSubject.next(authorities);
   }
 
-  public getAuthorities(): string[] {
-    this.roles = [];
+  public getAuthorities(): Observable<string[]> {
+    return this.rolesSubject.asObservable();
+  }
 
-    if (sessionStorage.getItem(TOKEN_KEY)) {
-      console.log('test');
-      console.log(sessionStorage.getItem(AUTHORITIES_KEY));
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
-        this.roles.push(authority);
-      });
-    }
+  public saveId(id: string) {
+    window.sessionStorage.setItem(ID_KEY, id);
+    this.idSubject.next(id);
+  }
 
-    return this.roles;
+  public getId(): Observable<string> {
+    return this.idSubject.asObservable();
+  }
+
+  public saveEmail(email: string) {
+    window.sessionStorage.setItem(EMAIL_KEY, email);
+    this.emailSubject.next(email);
+  }
+
+  public getEmail(): Observable<string> {
+    return this.emailSubject.asObservable();
   }
 }

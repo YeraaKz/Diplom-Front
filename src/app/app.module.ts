@@ -28,6 +28,7 @@ import {httpInterceptorProviders} from "./services/token/auth-interceptor";
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -51,19 +52,20 @@ import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
     MyCourseDetailsComponent,
     PdfViewerComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-    }),
-    ReactiveFormsModule,
-    PdfViewerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-top-right',
+            preventDuplicates: true,
+        }),
+        ReactiveFormsModule,
+        PdfViewerModule,
+        NgOptimizedImage
+    ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
