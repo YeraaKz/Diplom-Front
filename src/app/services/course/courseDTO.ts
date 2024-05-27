@@ -4,6 +4,7 @@ export interface CourseDTO {
   description: string;
   level: string;
   language: string;
+  imageKey: string;
   durationInMonths: string;
   dateCreated: Date;
 }

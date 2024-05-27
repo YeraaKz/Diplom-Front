@@ -46,4 +46,8 @@ export class CourseService {
     }
     return this.http.get(`${this.baseUrl}/search`, { params });
   }
+
+  getCourseImage(): Observable<string> {
+    return this.http.get<string>(`${this.baseUrl}/image`, { responseType: 'text' as 'json' });
+  }
 }
