@@ -1,3 +1,5 @@
+import {CourseModuleDTO} from "./course_moduleDTO";
+
 export interface CourseDTO {
   id: number;
   name: string;
@@ -7,4 +9,5 @@ export interface CourseDTO {
   imageKey: string;
   durationInMonths: string;
   dateCreated: Date;
+  modules: CourseModuleDTO[]
 }

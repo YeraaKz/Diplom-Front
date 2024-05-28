@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (file) {
       this.userService.uploadFile(file).subscribe({
         next: response => {
-          // После успешной загрузки обновляем изображение пользователя
           this.loadUserImage();
         },
         error: err => {

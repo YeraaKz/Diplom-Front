@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {PdfService} from "../services/pdf/pdf.service";
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -18,18 +20,17 @@ import {PdfService} from "../services/pdf/pdf.service";
 })
 export class PdfViewerComponent {
   pdfSrc: string;
+  private subscriptions = new Subscription();
 
-  constructor(private pdfService: PdfService) {}
+  constructor(private pdfService: PdfService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.pdfService.getPdfUrl('Overtime Ashimov Yerzhan.pdf').subscribe(
-      (url: string) => {
-        console.log(url);
+    const fileKey = this.route.snapshot.paramMap.get('fileKey');
+
+    if (fileKey) {
+      this.subscriptions.add(this.pdfService.getPdfUrl(fileKey).subscribe(url => {
         this.pdfSrc = url;
-      },
-      (error) => {
-        console.error('Error loading PDF URL', error);
-      }
-    );
+      }))
+    }
   }
 }

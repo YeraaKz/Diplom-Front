@@ -94,8 +94,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'presentation',
-    component: PdfViewerComponent
+    path: 'presentation/:fileKey',
+    component: PdfViewerComponent,
+    canActivate: [AuthGuard]
   }
 
 ];

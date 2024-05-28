@@ -6,10 +6,12 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class PdfService {
+  private baseUrl = 'http://localhost:8080/api/v1/pdfs';
+
 
   constructor(private http: HttpClient) { }
 
   getPdfUrl(key: string): Observable<string> {
-    return this.http.get(`http://localhost:8080/api/v1/courses/pdfs/get-pdf-url?objectName=${key}`, { responseType: 'text' });
+    return this.http.get<string>(`${this.baseUrl}/get-pdf-url?objectName=${key}`, { responseType: 'text' as 'json' });
   }
 }

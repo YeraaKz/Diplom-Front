@@ -78,7 +78,7 @@ export class TokenStorageService {
     this.idSubject.next(id);
   }
 
-  public getId(): Observable<string> {
+  public getId(): Observable<string>{
     return this.idSubject.asObservable();
   }
 
