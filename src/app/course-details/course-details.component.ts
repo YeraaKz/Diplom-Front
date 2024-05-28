@@ -30,6 +30,8 @@ export class CourseDetailsComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
           this.authority = true;
     }
+
+    console.log(this.courseService.getCourseById(this.courseId));
   }
 
   enrollInCourse(id: number): void {

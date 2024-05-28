@@ -1,4 +1,5 @@
 import {CourseModuleDTO} from "./course_moduleDTO";
+import {CourseSkillDTO} from "./courseSkillDTO";
 
 export interface CourseDTO {
   id: number;
@@ -10,4 +11,5 @@ export interface CourseDTO {
   durationInMonths: string;
   dateCreated: Date;
   modules: CourseModuleDTO[]
+  skills: CourseSkillDTO[];  // Добавьте это поле
 }

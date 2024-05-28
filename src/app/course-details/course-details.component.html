@@ -1,6 +1,6 @@
-<div class="header">
-  <div class="container">
-    <div class="header-content" *ngIf="course$ | async as course">
+<div class="header" *ngIf="course$ | async as course">
+  <div class="container" >
+    <div class="header-content" >
       <div class="header-text">
         <h1 class="course-title">{{ course.name }}</h1>
         <div class="tags">
@@ -24,7 +24,7 @@
             </div>
             <div class="course-includes">
               <span>Этот курс включает</span>
-              <div class="includes-item">10 видео</div>
+              <div class="includes-item">{{course.modules.length}} модуля</div>
             </div>
             <div *ngIf="authority; else signIn">
               <button class="buy-btn" (click)="enrollInCourse(course.id)">Enroll in Course</button>
@@ -41,46 +41,35 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="course$ | async as course">
   <div class="course-description">
     <div class="learning-objectives">
       <h2>Чему вы научитесь?</h2>
       <div class="columns">
         <ul>
-          <li>Aspect 1 of what you will learn</li>
-          <li>Aspect 2 of what you will learn</li>
+          <li *ngFor="let skill of course.skills.slice(0, 2)">{{ skill.skillDescription }}</li>
         </ul>
         <ul>
-          <li>Aspect 3 of what you will learn</li>
-          <li>Aspect 4 of what you will learn</li>
+          <li *ngFor="let skill of course.skills.slice(2, 4)">{{ skill.skillDescription }}</li>
         </ul>
       </div>
     </div>
     <div class="detailed-info">
       <h4>Описание</h4>
-      <p>Пошаговая инструкция по действиям в случае импорта из стран ЕАЭС, а также из третьих стран мира. Подробный план при экспорте товара в рамках ЕАЭС и третьих стран мира Что вы узнаете на курсе? Пошаговая инструкция по действиям в случае импорта из стран ЕАЭС, а также из третьих стран мира. Подробный план при экспорте товара в рамках ЕАЭС и третьих стран мира Оформление CHT на импорт, составление CHT и 328.00.
-        Узнаете какие налоговые обязательства возникают при импорте?
-        Что такое грузовая таможенная декларация и где ее взять? Какую отчетность необходимо сдавать? И многое другое</p>
+      <p>{{ course.description }}</p>
     </div>
     <div class="lesson-plan">
       <div class="lesson-plan-header">
         <h2>План обучения</h2>
-        <p> 10 секций • 15 videosCount видео</p>
+        <p> {{course.modules.length}} модуля</p>
       </div>
       <ul class="lesson-list">
-        <div class="lesson-item">
+        <div class="lesson-item" *ngFor="let module of course.modules">
           <div class="lesson-arrow"></div>
-          <span class="lesson-title">Урок 1</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-arrow"></div>
-          <span class="lesson-title">Урок 2</span>
-        </div>
-        <div class="lesson-item">
-          <div class="lesson-arrow"></div>
-          <span class="lesson-title">Урок 3</span>
+          <span class="lesson-title">{{ module.title }}</span>
         </div>
       </ul>
     </div>
   </div>
 </div>
+
