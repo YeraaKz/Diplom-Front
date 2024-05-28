@@ -29,6 +29,9 @@ import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {NgOptimizedImage} from "@angular/common";
+import { CryptoCheckerComponent } from './crypto-checker/crypto-checker.component';
+import {CryptoService} from "./services/crypto/crypto.service";
+import { LoadingPageComponent } from './loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ import {NgOptimizedImage} from "@angular/common";
     TestResultsComponent,
     MyCourseDetailsComponent,
     PdfViewerComponent,
+    CryptoCheckerComponent,
+    LoadingPageComponent,
   ],
     imports: [
         BrowserModule,
@@ -66,7 +71,7 @@ import {NgOptimizedImage} from "@angular/common";
         PdfViewerModule,
         NgOptimizedImage
     ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, CryptoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

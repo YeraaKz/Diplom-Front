@@ -1,0 +1,27 @@
+<div *ngIf="loading">
+  <app-loading-page></app-loading-page>
+</div>
+
+<div class="container" *ngIf="!loading">
+  <h1>Crypto Checker</h1>
+  <form (ngSubmit)="onSubmit()" class="form">
+    <div class="form-group">
+      <label for="cryptoName">Enter Cryptocurrency Name:</label>
+      <input type="text" id="cryptoName" [(ngModel)]="cryptoName" name="cryptoName" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loading">Check</button>
+  </form>
+
+  <div *ngIf="result" class="result mt-4">
+    <h2>Result:</h2>
+    <div [ngClass]="{'alert': true, 'alert-success': result.status === 'Legitimate', 'alert-warning': result.status === 'Suspect', 'alert-danger': result.status === 'Scam'}">
+      <p><strong>Status:</strong> {{ result.status }}</p>
+      <p><strong>Message:</strong> {{ result.message }}</p>
+      <div *ngIf="result.data">
+        <p><strong>ID:</strong> {{ result.data.id }}</p>
+        <p><strong>Symbol:</strong> {{ result.data.symbol }}</p>
+        <p><strong>Name:</strong> {{ result.data.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

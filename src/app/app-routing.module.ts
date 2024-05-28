@@ -17,6 +17,7 @@ import {MyCourseDetailsComponent} from "./my-course-details/my-course-details.co
 import {MyCoursesComponent} from "./my-courses/my-courses.component";
 import {AuthGuard} from "./auth.guard";
 import {PdfViewerComponent} from "./pdf-viewer/pdf-viewer.component";
+import {CryptoCheckerComponent} from "./crypto-checker/crypto-checker.component";
 
 const routes: Routes = [
   {
@@ -97,6 +98,10 @@ const routes: Routes = [
     path: 'presentation/:fileKey',
     component: PdfViewerComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'crypto-checker',
+    component: CryptoCheckerComponent
   }
 
 ];
