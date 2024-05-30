@@ -2,9 +2,9 @@
   <div class="hero-container">
     <div class="text-box">
       <div class="content">
-        <h1>Будущее в ваших руках</h1>
-        <p>Освоите Blockchain за короткий срок вместе с BlockHub</p>
-        <button class="choose-course-btn" routerLink="/courses" >Выбрать курс</button>
+        <h1>{{ 'Future in your hands' | translate }}</h1>
+        <p>{{ 'Master the Blockchain in a short time with BlockHub'|translate }}</p>
+        <button class="choose-course-btn" routerLink="/courses" >{{ 'Choose a course'|translate }}</button>
       </div>
     </div>
     <div class="video-box">
@@ -18,17 +18,17 @@
 
 <div class="container">
   <div class="courses-section">
-    <h2>Наши курсы</h2>
+    <h2>{{'Our courses'|translate}}</h2>
     <div class="course-categories">
       <button class="category-btn"
               [class.active]="activeCategory === 'С нуля'"
-              (click)="filterCoursesByCategory('С нуля')">С нуля</button>
+              (click)="filterCoursesByCategory('С нуля')">{{'From scratch'|translate}}</button>
       <button class="category-btn"
               [class.active]="activeCategory === 'Начинающий'"
-              (click)="filterCoursesByCategory('Начинающий')">Начинающий</button>
+              (click)="filterCoursesByCategory('Начинающий')">{{'For beginners'|translate}}</button>
       <button class="category-btn"
               [class.active]="activeCategory === 'Продвинутый'"
-              (click)="filterCoursesByCategory('Продвинутый')">Продвинутый</button>
+              (click)="filterCoursesByCategory('Продвинутый')">{{"Advanced"|translate}}</button>
     </div>
     <div class="courses-container">
       <ng-container *ngIf="filteredCourses$ | async as courses">
@@ -44,7 +44,7 @@
       </ng-container>
     </div>
     <div class="view-all-btn-container">
-      <button class="view-all-btn" routerLink="/courses">Посмотреть все курсы</button>
+      <button class="view-all-btn" routerLink="/courses">{{ "View all courses"|translate }}</button>
     </div>
   </div>
 </div>
@@ -52,7 +52,7 @@
 
 <div class="container">
   <div class="testimonials-section">
-    <h2>Отзывы выпускников</h2>
+    <h2>{{ "Alumni Reviews"|translate }}</h2>
     <div class="testimonial-cards-container">
 
       <div class="testimonial-card">
@@ -105,13 +105,13 @@
 <div class="container">
   <div class="contact-section">
     <div class="contact-text">
-      <h2>Если у вас остались вопросы — мы поможем</h2>
+      <h2>{{ "If you still have questions, we will help you"|translate }}</h2>
     </div>
     <form (ngSubmit)="contactUs()" #f="ngForm" novalidate>
       <div class="contact-form">
         <input type="text" id="firstName" name="firstName" placeholder="Ваше имя" [(ngModel)]="form.firstName" class="name-input">
         <input type="tel" id="phone" name="phone" placeholder="+7 (999) 999-99-99" [(ngModel)]="form.phones" class="phone-input">
-        <button type="submit" class="contact-btn">Свяжитесь со мной</button>
+        <button type="submit" class="contact-btn">{{ "Contact me"|translate }}</button>
       </div>
     </form>
   </div>

@@ -6,10 +6,10 @@
       </a>
     </div>
     <ul class="nav-links" *ngIf="!authority">
-      <li><a routerLink="home">Home</a></li>
-      <li><a routerLink="contact">Contact us</a></li>
-      <li><a routerLink="courses">Courses</a></li>
-      <li><a routerLink="contact">News & Events</a></li>
+      <li><a routerLink="home">{{"Home"|translate}}</a></li>
+      <li><a routerLink="contact">{{ "Contact us"|translate }}</a></li>
+      <li><a routerLink="courses">{{ "Courses"|translate }}</a></li>
+      <li><a routerLink="contact">{{ "News & Events"|translate }}</a></li>
 
     </ul>
     <div class="auth-and-profile"  [class.open]="dropdownOpen" (click)="toggleDropdown()">
@@ -29,10 +29,19 @@
         <a routerLink="/my-purchases">Новости</a>
         <a routerLink="/test">Игра</a>
         <a routerLink="/courses">Все курсы</a>
-        <a routerLink="/my-purchases" (click)="logout()">Logout</a>
+        <a routerLink="/my-purchases" (click)="logout()">{{ "Logout"|translate }}</a>
       </div>
-      <button *ngIf="!authority" routerLink="auth/login" class="sign-in-btn">Sign in</button>
+      <button *ngIf="!authority" routerLink="auth/login" class="sign-in-btn">{{"Sign in"|translate}}</button>
     </div>
 
+    <div class="language-dropdown">
+      <button class="language-btn" (click)="toggleLanguageDropdown()">
+        {{ currentLanguage | uppercase }}
+      </button>
+      <ul class="language-menu" *ngIf="languageDropdownOpen">
+        <li class="lang-item" (click)="switchLanguage('ru')">Русский</li>
+        <li class="lang-item" (click)="switchLanguage('kz')">Қазақша</li>
+      </ul>
+    </div>
   </nav>
 </header>

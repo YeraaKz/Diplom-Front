@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import { FooterComponent } from './footer/footer.component';
 import { CoursesComponent } from './courses/courses.component';
@@ -32,6 +32,12 @@ import {NgOptimizedImage} from "@angular/common";
 import { CryptoCheckerComponent } from './crypto-checker/crypto-checker.component';
 import {CryptoService} from "./services/crypto/crypto.service";
 import { LoadingPageComponent } from './loading-page/loading-page.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -58,18 +64,25 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
     LoadingPageComponent,
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        ToastrModule.forRoot({
-            positionClass: 'toast-top-right',
-            preventDuplicates: true,
-        }),
-        ReactiveFormsModule,
-        PdfViewerModule,
-        NgOptimizedImage
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      ToastrModule.forRoot({
+          positionClass: 'toast-top-right',
+          preventDuplicates: true,
+      }),
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }),
+      ReactiveFormsModule,
+      PdfViewerModule,
+      NgOptimizedImage,
     ],
   providers: [httpInterceptorProviders, CryptoService],
   bootstrap: [AppComponent]

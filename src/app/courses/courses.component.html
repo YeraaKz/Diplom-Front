@@ -3,16 +3,16 @@
     <div class="buttons-container">
       <button class="tab-button"
               [class.active]="activeLanguage === 'Все'"
-              (click)="filterCoursesByLanguage('Все')">Все курсы</button>
+              (click)="filterCoursesByLanguage('Все')">{{ "All courses"|translate }}</button>
       <button class="tab-button"
               [class.active]="activeLanguage === 'Русский'"
-              (click)="filterCoursesByLanguage('Русский')">На русском</button>
+              (click)="filterCoursesByLanguage('Русский')">{{"In Russian"|translate}}</button>
       <button class="tab-button"
               [class.active]="activeLanguage === 'Казахский'"
-              (click)="filterCoursesByLanguage('Казахский')">На казахском</button>
+              (click)="filterCoursesByLanguage('Казахский')">{{ "In Kazakh"|translate }}</button>
     </div>
     <div class="search-container">
-      <input type="text" class="search-input" placeholder="Поиск курсов..." [(ngModel)]="searchTerm">
+      <input type="text" class="search-input" placeholder="{{'Search for courses...'|translate}}" [(ngModel)]="searchTerm">
       <button class="search-btn" (click)="onSearchCourse()">
         <i class="fas fa-search"></i>
       </button>
