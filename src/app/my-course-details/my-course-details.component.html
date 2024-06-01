@@ -3,7 +3,8 @@
   <div class="menu-items" [class.hidden]="menuHidden">
     <div class="module" *ngFor="let module of course.modules" (click)="selectModule(module)">
       <h1 class="module-title">{{ module.title }}</h1>
-      <span class="status completed">1/12</span>
+      <span class="status completed"></span>
+      <i class="status-icon" [ngClass]="{'fas fa-check-circle': testPassed(module.moduleTest.submissions), 'far fa-circle': !testPassed(module.moduleTest.submissions)}" style="color: green;"></i>
     </div>
   </div>
 </div>
@@ -31,6 +32,15 @@
       <div class="lesson-details">
         <h3>{{ lesson.title }}</h3>
         <span>{{ lesson.contentType }}</span>
+      </div>
+    </div>
+    <div class="lesson" (click)="onTestClick(selectedModule.moduleTest)">
+      <div class="lesson-icon">
+        <i class="fas fa-question-circle"></i>
+      </div>
+      <div class="lesson-details">
+        <h3>{{ selectedModule.moduleTest.testName }}</h3>
+        <span>Тест</span>
       </div>
     </div>
   </div>

@@ -26,7 +26,6 @@ export class TestResultsComponent implements OnInit {
   ngOnInit(): void {}
 
   getPercentage(): number {
-    console.log(this.totalQuestions);
     return this.totalQuestions ? (this.score / this.totalQuestions) * 100 : 0;
   }
 

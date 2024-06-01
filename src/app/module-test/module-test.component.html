@@ -1,0 +1,17 @@
+<div class="test-container" *ngIf="test">
+  <h1>{{ test.testName }}</h1>
+  <div *ngFor="let question of test.questions" class="question-container">
+    <h2>{{ question.questionText }}</h2>
+    <div class="options-container">
+      <button (click)="selectAnswer(question.id, option.id)"
+              [ngClass]="{'selected': answers[question.id] === option.id}"
+              *ngFor="let option of question.options">
+        {{ option.optionText }}
+      </button>
+    </div>
+  </div>
+  <button class="submit-button" (click)="submitTest()">Submit Test</button>
+  <div *ngIf="score !== null" class="score-container">
+    <h2>Your Score: {{ score }} / {{ test.questions.length }}</h2>
+  </div>
+</div>

@@ -10,16 +10,15 @@
       <li><a routerLink="contact">{{ "Contact us"|translate }}</a></li>
       <li><a routerLink="courses">{{ "Courses"|translate }}</a></li>
       <li><a routerLink="contact">{{ "News & Events"|translate }}</a></li>
-
     </ul>
-    <div class="auth-and-profile"  [class.open]="dropdownOpen" (click)="toggleDropdown()">
-      <a *ngIf="authority">
+    <div class="auth-and-profile">
+      <a *ngIf="authority" (click)="toggleDropdown()">
         <div class="user-profile">
           <div class="user-name">
             <div>{{ name}}</div>
           </div>
           <div class="user-image">
-            <img src="assets/user-default-img.png" alt="User image">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="User image">
           </div>
         </div>
       </a>
@@ -32,16 +31,15 @@
         <a routerLink="/my-purchases" (click)="logout()">{{ "Logout"|translate }}</a>
       </div>
       <button *ngIf="!authority" routerLink="auth/login" class="sign-in-btn">{{"Sign in"|translate}}</button>
-    </div>
-
-    <div class="language-dropdown">
-      <button class="language-btn" (click)="toggleLanguageDropdown()">
-        {{ currentLanguage | uppercase }}
-      </button>
-      <ul class="language-menu" *ngIf="languageDropdownOpen">
-        <li class="lang-item" (click)="switchLanguage('ru')">Русский</li>
-        <li class="lang-item" (click)="switchLanguage('kz')">Қазақша</li>
-      </ul>
+      <div class="language-dropdown">
+        <button class="language-btn" (click)="toggleLanguageDropdown($event)">
+          {{ currentLanguage | uppercase }}
+        </button>
+        <ul class="language-menu" *ngIf="languageDropdownOpen">
+          <li class="lang-item" (click)="switchLanguage('ru')">Русский</li>
+          <li class="lang-item" (click)="switchLanguage('kz')">Қазақша</li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

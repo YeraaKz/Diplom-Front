@@ -34,6 +34,8 @@ import {CryptoService} from "./services/crypto/crypto.service";
 import { LoadingPageComponent } from './loading-page/loading-page.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { ModuleTestComponent } from './module-test/module-test.component';
+import { ModuleTestResultComponent } from './module-test-result/module-test-result.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -62,6 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PdfViewerComponent,
     CryptoCheckerComponent,
     LoadingPageComponent,
+    ModuleTestComponent,
+    ModuleTestResultComponent,
   ],
     imports: [
       BrowserModule,

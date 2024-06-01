@@ -3,6 +3,7 @@ import { TokenStorageService } from "../services/token/token-storage.service";
 import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import {TranslateService} from "@ngx-translate/core";
+import {UserService} from "../services/user/user.service";
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +14,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   roles: string[] = [];
   authority: string;
   name: string;
+  imageUrl: string;
   dropdownOpen = false;
   currentLanguage = 'ru';
   languageDropdownOpen = false;
   private subscriptions = new Subscription();
 
-  constructor(private tokenStorage: TokenStorageService, private router: Router, private translate: TranslateService) { }
+  constructor(
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private translate: TranslateService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.subscriptions.add(this.tokenStorage.getToken().subscribe(token => {
@@ -36,6 +42,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.authority = '';
       }
     }));
+    this.loadUserImage();
+
   }
 
   determineAuthority() {
@@ -43,12 +51,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.roles.find(role => role === 'ROLE_PM') ? 'pm' : 'user';
   }
 
-  toggleDropdown(): void {
+  toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+    if (this.languageDropdownOpen) {
+      this.languageDropdownOpen = false;
+    }
   }
 
-  toggleLanguageDropdown(): void {
+  toggleLanguageDropdown(event: MouseEvent) {
+    event.stopPropagation();
     this.languageDropdownOpen = !this.languageDropdownOpen;
+    if (this.dropdownOpen) {
+      this.dropdownOpen = false;
+    }
+  }
+
+  loadUserImage(): void {
+    this.subscriptions.add(this.userService.getUserImage().subscribe(imageUrl => {
+      this.imageUrl = imageUrl;
+    }));
   }
 
   switchLanguage(language: string) {

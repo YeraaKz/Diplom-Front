@@ -18,6 +18,8 @@ import {MyCoursesComponent} from "./my-courses/my-courses.component";
 import {AuthGuard} from "./auth.guard";
 import {PdfViewerComponent} from "./pdf-viewer/pdf-viewer.component";
 import {CryptoCheckerComponent} from "./crypto-checker/crypto-checker.component";
+import {ModuleTestComponent} from "./module-test/module-test.component";
+import {ModuleTestResultComponent} from "./module-test-result/module-test-result.component";
 
 const routes: Routes = [
   {
@@ -102,8 +104,17 @@ const routes: Routes = [
   {
     path: 'crypto-checker',
     component: CryptoCheckerComponent
+  },
+  {
+    path: 'module-test/:id',
+    component: ModuleTestComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'module-test-result',
+    component: ModuleTestResultComponent,
+    canActivate: [AuthGuard]
   }
-
 ];
 
 @NgModule({
