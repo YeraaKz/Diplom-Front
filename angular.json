@@ -21,21 +21,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/diplom-front",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
               },
               {
                 "glob": "**/*",
@@ -71,7 +70,8 @@
                 },
                 "fonts": {
                   "inline": false
-                },
+                }
+              },
               "outputHashing": "all"
             },
             "development": {
@@ -86,10 +86,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Diplom-Front:build:production",
+              "browserTarget": "Diplom-Front:build:production"
             },
             "development": {
-              "buildTarget": "Diplom-Front:build:development"
+              "browserTarget": "Diplom-Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -110,7 +110,8 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
               },
               {
                 "glob": "**/*",
