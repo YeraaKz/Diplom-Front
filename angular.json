@@ -63,6 +63,15 @@
                   "maximumError": "4kB"
                 }
               ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": {
+                  "inline": false
+                },
               "outputHashing": "all"
             },
             "development": {
@@ -77,7 +86,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Diplom-Front:build:production"
+              "buildTarget": "Diplom-Front:build:production",
             },
             "development": {
               "buildTarget": "Diplom-Front:build:development"
