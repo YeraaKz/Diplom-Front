@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TokenStorageService } from '../token/token-storage.service';
 import {UserRequest} from './user-request';
 import {UserUpdateDTO} from './user-update.dto';
-import {environment} from "../../../environment/environment.prod";
+import {environment} from "../../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
