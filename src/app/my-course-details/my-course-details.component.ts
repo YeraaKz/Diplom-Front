@@ -15,7 +15,7 @@ import {ToastrService} from "ngx-toastr";
 export class MyCourseDetailsComponent implements OnInit {
   courseId: number;
   menuHidden = true;
-  course: CourseDTO;
+  course: CourseDTO | null = null;
   selectedModule: any;
 
   constructor(
@@ -36,7 +36,7 @@ export class MyCourseDetailsComponent implements OnInit {
       (course: CourseDTO) => {
         this.course = course;
         this.checkIfAllTestsPassed();
-        if (this.course.modules.length > 0) {
+        if (this.course && this.course.modules.length > 0) {
           this.selectedModule = this.course.modules[0];
         }
       },
@@ -51,7 +51,7 @@ export class MyCourseDetailsComponent implements OnInit {
   }
 
   testPassed(submissions: ModuleTestSubmissionDTO[]): boolean {
-    return submissions.some(submission => submission.passed);
+    return submissions?.some(submission => submission.passed) || false;
   }
 
   selectModule(module: any): void {
@@ -70,13 +70,12 @@ export class MyCourseDetailsComponent implements OnInit {
   }
 
   checkIfAllTestsPassed(): void {
-    const allTestsPassed = this.course.modules.every(module =>
-      module.moduleTest.submissions.some(submission => submission.passed)
-    );
+    const allTestsPassed = this.course?.modules.every(module =>
+      module.moduleTest?.submissions.some(submission => submission.passed)
+    ) || false;
 
     if (allTestsPassed) {
       this.toastr.success('Поздравляем! Вы успешно сдали все тесты курса.', 'Курс успешно завершен!');
     }
   }
-
 }
