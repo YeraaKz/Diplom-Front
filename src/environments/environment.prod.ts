@@ -14,7 +14,7 @@ export const environment = {
   allUserUrl: 'https://educationplatform-juhi.onrender.com/api/v1/user/all',
   delete:'https://educationplatform-juhi.onrender.com/api/v1/user/delete',
   addUser: 'https://educationplatform-juhi.onrender.com/api/v1/user/save',
-  uploadUrl: 'https://educationplatform-juhi.onrender.com/api/v1/upload',
+  uploadUrl: 'https://educationplatform-juhi.onrender.com/api/v1/user/upload',
   baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/user',
   newsUrl: 'https://educationplatform-juhi.onrender.com/api/v1/news',
 };

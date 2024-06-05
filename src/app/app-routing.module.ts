@@ -21,6 +21,7 @@ import {CryptoCheckerComponent} from "./crypto-checker/crypto-checker.component"
 import {ModuleTestComponent} from "./module-test/module-test.component";
 import {ModuleTestResultComponent} from "./module-test-result/module-test-result.component";
 import {NewsComponent} from "./news/news.component";
+import {NewsDetailsComponent} from "./news-details/news-details.component";
 
 const routes: Routes = [
   {
@@ -119,6 +120,10 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent,
+  },
+  {
+    path: 'news/:id',
+    component: NewsDetailsComponent,
   }
 ];
 

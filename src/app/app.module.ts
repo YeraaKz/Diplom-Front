@@ -37,6 +37,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ModuleTestComponent } from './module-test/module-test.component';
 import { ModuleTestResultComponent } from './module-test-result/module-test-result.component';
 import { NewsComponent } from './news/news.component';
+import { NewsDetailsComponent } from './news-details/news-details.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -68,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ModuleTestComponent,
     ModuleTestResultComponent,
     NewsComponent,
+    NewsDetailsComponent,
   ],
     imports: [
       BrowserModule,

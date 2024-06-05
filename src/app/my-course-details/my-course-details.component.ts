@@ -6,6 +6,7 @@ import { LessonDTO } from '../services/course/lessonDTO';
 import {ModuleTestDTO} from "../services/course/module_testDTO";
 import {ModuleTestSubmissionDTO} from "../services/course/module_test_submissionDTO";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../services/auth/auth.service";
 
 @Component({
   selector: 'app-my-course-details',
@@ -17,14 +18,20 @@ export class MyCourseDetailsComponent implements OnInit {
   menuHidden = true;
   course: CourseDTO | null = null;
   selectedModule: any;
+  currentUserId: number | null;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private courseService: CourseService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private authService: AuthService
+    ) {
 
     this.courseId = this.route.snapshot.params['id'];
+    this.currentUserId = this.authService.getCurrentUserId(); // Получение текущего userId из сервиса аутентификации
+
   }
 
   ngOnInit(): void {
@@ -50,8 +57,9 @@ export class MyCourseDetailsComponent implements OnInit {
     this.menuHidden = !this.menuHidden;
   }
 
-  testPassed(submissions: ModuleTestSubmissionDTO[]): boolean {
-    return submissions?.some(submission => submission.passed) || false;
+  testPassed(submissions: ModuleTestSubmissionDTO[], userId: number | null): boolean {
+    console.log(submissions[0].user.id);
+    return submissions?.some(submission => submission.user.id === userId && submission.passed) || false;
   }
 
   selectModule(module: any): void {
@@ -71,7 +79,7 @@ export class MyCourseDetailsComponent implements OnInit {
 
   checkIfAllTestsPassed(): void {
     const allTestsPassed = this.course?.modules.every(module =>
-      module.moduleTest?.submissions.some(submission => submission.passed)
+      module.moduleTest?.submissions.some(submission => submission.user.id === this.currentUserId && submission.passed)
     ) || false;
 
     if (allTestsPassed) {

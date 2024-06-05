@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="news-title">Новости и События</h1>
     <div class="news-grid">
-      <div *ngFor="let news of newsList" class="news-card">
+      <div *ngFor="let news of newsList" class="news-card" [routerLink]="['/news', news.id]">
         <img [src]="news.imageKey" alt="News Image">
         <h2>{{ news.title }}</h2>
         <h3>{{ news.subtitle }}</h3>
