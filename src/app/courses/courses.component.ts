@@ -25,11 +25,13 @@ export class CoursesComponent {
       (courses: CourseDTO[]) => {
         this.coursesList = courses;
         this.filteredCoursesList = courses;
+        console.log(courses);
       },
       (error) => {
         alert(error.message);
       }
     );
+
   }
   filterCoursesByLanguage(language: string): void {
     this.activeLanguage = language;

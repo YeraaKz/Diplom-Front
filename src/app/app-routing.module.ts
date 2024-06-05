@@ -20,6 +20,7 @@ import {PdfViewerComponent} from "./pdf-viewer/pdf-viewer.component";
 import {CryptoCheckerComponent} from "./crypto-checker/crypto-checker.component";
 import {ModuleTestComponent} from "./module-test/module-test.component";
 import {ModuleTestResultComponent} from "./module-test-result/module-test-result.component";
+import {NewsComponent} from "./news/news.component";
 
 const routes: Routes = [
   {
@@ -114,6 +115,10 @@ const routes: Routes = [
     path: 'module-test-result',
     component: ModuleTestResultComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'news',
+    component: NewsComponent,
   }
 ];
 

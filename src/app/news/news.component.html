@@ -1,0 +1,12 @@
+<div class="news-container">
+  <div class="container">
+    <div class="news-grid">
+      <div *ngFor="let news of newsList" class="news-card">
+        <img [src]="news.imageKey" alt="News Image">
+        <h2>{{ news.title }}</h2>
+        <h3>{{ news.subtitle }}</h3>
+        <p>{{ news.datePublished | date: 'dd.MM.yyyy' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

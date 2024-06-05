@@ -16,4 +16,6 @@ export const environment = {
   addUser: 'http://localhost:8080/api/v1/user/save',
   uploadUrl: 'http://localhost:8080/api/v1/upload',
   baseUrl: 'http://localhost:8080/api/v1/user',
+  newsUrl: 'http://localhost:8080/api/v1/news',
+
 };
