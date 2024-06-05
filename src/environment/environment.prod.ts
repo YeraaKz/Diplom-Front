@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   courses_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/courses',
-  loginUrl: 'https://educationplatform-juhi.onrender.com/api/v1/auth/login',
+  loginUrl: 'https://educationplatform-juhi.onrender.com/api/v1/auth/signin',
   signupUrl: 'https://educationplatform-juhi.onrender.com/api/v1/auth/signup',
   contact_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/contacts',
   moduleTest_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/module-tests',
