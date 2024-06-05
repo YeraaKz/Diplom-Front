@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }));
     this.subscriptions.add(this.tokenService.getUsername().subscribe(username => {
       this.info.username = username;
-      // Загрузить изображение после получения username
     }));
     this.subscriptions.add(this.tokenService.getAuthorities().subscribe(authorities => {
       this.info.authorities = authorities;

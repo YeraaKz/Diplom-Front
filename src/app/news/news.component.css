@@ -30,6 +30,10 @@ body{
   cursor: pointer;
 }
 
+.news-title{
+  text-align: center;
+  margin-bottom: 40px;
+}
 
 .news-card img {
   width: 100%;

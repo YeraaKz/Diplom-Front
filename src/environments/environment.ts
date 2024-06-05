@@ -14,7 +14,7 @@ export const environment = {
   allUserUrl: 'http://localhost:8080/api/v1/user/all',
   delete:'http://localhost:8080/api/v1/user/delete',
   addUser: 'http://localhost:8080/api/v1/user/save',
-  uploadUrl: 'http://localhost:8080/api/v1/upload',
+  uploadUrl: 'http://localhost:8080/api/v1/user/upload',
   baseUrl: 'http://localhost:8080/api/v1/user',
   newsUrl: 'http://localhost:8080/api/v1/news',
 
