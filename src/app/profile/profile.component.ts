@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../services/token/token-storage.service';
-import { UserService } from '../services/user/user.service'; // Предполагается что сервис назван UserService
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,13 +22,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }));
     this.subscriptions.add(this.tokenService.getUsername().subscribe(username => {
       this.info.username = username;
-      // Загрузить изображение после получения username
+      this.loadUserImage(); // Загрузить изображение после получения username
     }));
     this.subscriptions.add(this.tokenService.getAuthorities().subscribe(authorities => {
       this.info.authorities = authorities;
     }));
-    this.loadUserImage();
-    console.log(this.imageUrl);
   }
 
   onCameraIconClick(): void {
