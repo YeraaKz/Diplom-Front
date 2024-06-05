@@ -1,0 +1,10 @@
+<div *ngIf="news" class="news-detail">
+  <a routerLink="/news">&larr; Назад</a>
+  <h1>{{ news.title }}</h1>
+  <h2>{{ news.subtitle }}</h2>
+  <div class="image-container">
+    <img [src]="news.imageKey" alt="News Image">
+  </div>
+  <p>{{ news.content }}</p>
+  <p>{{ news.datePublished | date: 'dd.MM.yyyy' }}</p>
+</div>

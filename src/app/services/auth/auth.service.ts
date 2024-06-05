@@ -19,6 +19,8 @@ export class AuthService {
   private loginUrl = environment.loginUrl;
   private signupUrl = environment.signupUrl;
 
+  constructor(private http: HttpClient) { }
+
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
@@ -27,5 +29,8 @@ export class AuthService {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
   }
 
-  constructor(private http: HttpClient) { }
+  getCurrentUserId(): number | null {
+    const userId = sessionStorage.getItem('AuthId');
+    return userId ? parseInt(userId) : null;
+  }
 }

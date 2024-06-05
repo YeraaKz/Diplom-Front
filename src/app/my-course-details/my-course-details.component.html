@@ -4,7 +4,7 @@
     <div class="module" *ngFor="let module of course?.modules" (click)="selectModule(module)">
       <h1 class="module-title">{{ module?.title }}</h1>
       <span class="status completed"></span>
-      <i class="status-icon" [ngClass]="{'fas fa-check-circle': testPassed(module?.moduleTest?.submissions), 'far fa-circle': !testPassed(module?.moduleTest?.submissions)}" style="color: green;"></i>
+      <i class="status-icon" [ngClass]="{'fas fa-check-circle': testPassed(module?.moduleTest?.submissions, currentUserId), 'far fa-circle': !testPassed(module?.moduleTest?.submissions, currentUserId)}" style="color: green;"></i>
     </div>
   </div>
 </div>

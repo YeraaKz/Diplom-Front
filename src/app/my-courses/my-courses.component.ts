@@ -4,6 +4,7 @@ import { CourseService } from '../services/course/course.service';
 import { ToastrService } from 'ngx-toastr';
 import {CourseDTO} from "../services/course/courseDTO";
 import {CourseModuleDTO} from "../services/course/course_moduleDTO";
+import {AuthService} from "../services/auth/auth.service";
 
 @Component({
   selector: 'app-my-courses',
@@ -12,7 +13,6 @@ import {CourseModuleDTO} from "../services/course/course_moduleDTO";
 })
 export class MyCoursesComponent implements OnInit {
   public coursesList: {
-    passedTests: number;
     durationInMonths: string;
     dateCreated: Date;
     level: string;
@@ -22,10 +22,18 @@ export class MyCoursesComponent implements OnInit {
     language: string;
     id: number;
     modules: CourseModuleDTO[];
-    totalTests: number
+    totalTests: number;
+    passedTests: number;
+
   }[] = [];
 
-  constructor(private courseService: CourseService, private toastr: ToastrService) { }
+  private currentUserId: number | null;
+
+  constructor(private courseService: CourseService,
+              private toastr: ToastrService,
+              private authService: AuthService) {
+    this.currentUserId = this.authService.getCurrentUserId(); // Получение текущего userId
+  }
 
   ngOnInit(): void {
     this.getMyCourses();
@@ -62,8 +70,8 @@ export class MyCoursesComponent implements OnInit {
     course.modules.forEach(module => {
       if (module.moduleTest && module.moduleTest.submissions) {
         totalTests += 1; // Подсчитываем каждый тест
-        // Проверяем, существует ли успешная сдача теста
-        if (module.moduleTest.submissions.some(submission => submission.passed)) {
+        // Проверяем, существует ли успешная сдача теста текущим пользователем
+        if (module.moduleTest.submissions.some(submission => submission.user.id === this.currentUserId && submission.passed)) {
           passedTests += 1;
         }
       }
