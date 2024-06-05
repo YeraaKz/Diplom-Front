@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { JwtResponse } from '../token/jwt-response';
 import { AuthLoginInfo } from '../token/login-info';
 import { SignUpInfo } from '../token/signup-info';
+import {environment} from "../../../environment/environment.prod";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,8 +16,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/v1/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/v1/auth/signup';
+  private loginUrl = environment.loginUrl;
+  private signupUrl = environment.signupUrl;
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);

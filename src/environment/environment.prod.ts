@@ -1,4 +1,19 @@
 export const environment = {
   production: true,
-  courses_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/courses'
+  courses_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/courses',
+  loginUrl: 'https://educationplatform-juhi.onrender.com/api/v1/auth/login',
+  signupUrl: 'https://educationplatform-juhi.onrender.com/api/v1/auth/signup',
+  contact_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/contacts',
+  moduleTest_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/module-tests',
+  pdf_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/pdfs',
+  test_baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/tests',
+  userUrl: 'http://localhost:8080/api/test/user',
+  pmUrl: 'http://localhost:8080/api/test/mod',
+  adminUrl: 'http://localhost:8080/api/test/admin',
+  allUrl: 'http://localhost:8080/api/test/all',
+  allUserUrl: 'http://localhost:8080/api/user/all',
+  delete:'http://localhost:8080/api/user/delete',
+  addUser: 'http://localhost:8080/api/user/save',
+  uploadUrl: 'http://localhost:8080/api/v1/user/upload',
+  baseUrl: 'http://localhost:8080/api/v1/user',
 };

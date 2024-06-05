@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environment/environment.prod";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
-  private baseUrl = 'http://localhost:8080/api/v1/pdfs';
+  private baseUrl = environment.pdf_baseUrl;
 
 
   constructor(private http: HttpClient) { }

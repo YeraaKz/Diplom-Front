@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { TokenStorageService } from '../token/token-storage.service';
 import {UserRequest} from './user-request';
 import {UserUpdateDTO} from './user-update.dto';
+import {environment} from "../../../environment/environment.prod";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,15 +14,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = 'http://localhost:8080/api/test/user';
-  private pmUrl = 'http://localhost:8080/api/test/mod';
-  private adminUrl = 'http://localhost:8080/api/test/admin';
-  private allUrl = 'http://localhost:8080/api/test/all';
-  private allUserUrl = 'http://localhost:8080/api/user/all';
-  private delete = 'http://localhost:8080/api/user/delete';
-  private addUser = 'http://localhost:8080/api/user/save';
-  private uploadUrl = 'http://localhost:8080/api/v1/user/upload';
-  private baseUrl = 'http://localhost:8080/api/v1/user';
+  private userUrl = environment.userUrl;
+  private pmUrl = environment.pmUrl;
+  private adminUrl = environment.adminUrl;
+  private allUrl = environment.allUrl;
+  private allUserUrl = environment.allUserUrl;
+  private delete = environment.delete;
+  private addUser = environment.addUser;
+  private uploadUrl = environment.uploadUrl;
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private token: TokenStorageService) { }
 

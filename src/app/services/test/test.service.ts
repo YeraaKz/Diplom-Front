@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {TestResultResponse} from './test-result-response';
+import {environment} from "../../../environment/environment.prod";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/tests';
+  private apiUrl = environment.test_baseUrl;
 
   constructor(private http: HttpClient) { }
 
