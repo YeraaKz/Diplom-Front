@@ -1,35 +1,59 @@
 .test-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 600px;
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+  align-items: center;
+}
+
+.test-title {
+  font-size: 24px;
+  margin-bottom: 50px;
 }
 
 .question-container {
-  margin-bottom: 20px;
-  text-align: left;
+  margin-bottom: 40px;
   width: 100%;
+  border-bottom: solid 1px #b4b4b4;
+}
+
+.question-title {
+  font-size: 18px;
+  margin-bottom: 30px;
+
 }
 
 .options-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; /* Adjusted to match the design */
+  font-size: 18px; /* Slightly larger font */
+  cursor: pointer;
+}
+
+.option-label input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.5); /* Make radio buttons larger */
 }
 
 button {
   margin: 5px;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #ddd;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: #f8f8f8;
   color: #333;
   font-size: 16px;
   text-align: left;
@@ -45,7 +69,7 @@ button:focus {
 }
 
 .selected {
-  background-color: #4CAF50; /* Зеленый */
+  background-color: #4CAF50;
   color: white;
 }
 
@@ -56,6 +80,7 @@ button:focus {
   color: white;
   font-size: 18px;
   transition: background-color 0.3s ease;
+  border: none;
 }
 
 .submit-button:hover {
@@ -66,8 +91,4 @@ button:focus {
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
-}
-
-h1, h2 {
-  font-family: Arial, sans-serif;
 }

@@ -1,13 +1,14 @@
 <div class="test-container" *ngIf="test">
-  <h1>{{ test.testName }}</h1>
+  <h1 class="test-title">{{ test.testName }}</h1>
   <div *ngFor="let question of test.questions" class="question-container">
-    <h2>{{ question.questionText }}</h2>
+    <h2 class="question-title">{{ question.questionText }}</h2>
     <div class="options-container">
-      <button (click)="selectAnswer(question.id, option.id)"
-              [ngClass]="{'selected': answers[question.id] === option.id}"
-              *ngFor="let option of question.options">
+      <label *ngFor="let option of question.options" class="option-label">
+        <input type="radio" name="question{{ question.id }}"
+               (click)="selectAnswer(question.id, option.id)"
+               [checked]="answers[question.id] === option.id">
         {{ option.optionText }}
-      </button>
+      </label>
     </div>
   </div>
   <button class="submit-button" (click)="submitTest()">Submit Test</button>
