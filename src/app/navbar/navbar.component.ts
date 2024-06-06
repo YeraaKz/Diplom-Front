@@ -80,7 +80,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.tokenStorage.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth/login']).then(() => {
+      location.reload();
+    });
   }
 
   ngOnDestroy() {

@@ -50,7 +50,10 @@ export class LoginComponent implements OnInit {
 
         this.tokenStorage.getAuthorities().subscribe(roles => {
           this.roles = roles;
-          this.router.navigate(['/profile']);
+        });
+
+        this.router.navigate(['/profile']).then(() => {
+          location.reload();
         });
       },
       error => {
