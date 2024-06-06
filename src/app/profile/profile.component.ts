@@ -40,6 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.userService.uploadFile(file).subscribe({
         next: response => {
           this.loadUserImage();
+          window.location.reload();
         },
         error: err => {
           console.error('Ошибка загрузки изображения:', err);
