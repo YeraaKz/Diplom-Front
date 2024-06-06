@@ -27,7 +27,6 @@
     <div class="lesson" *ngFor="let lesson of selectedModule?.lessons" (click)="onLessonClick(lesson)">
       <div class="lesson-icon">
         <i class="fas fa-file-alt"></i>
-        <!--        <i [ngClass]="lesson.iconClass"></i>-->
       </div>
       <div class="lesson-details">
         <h3>{{ lesson?.title }}</h3>
@@ -43,5 +42,10 @@
         <span>Тест</span>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="courseCompleted" class="course-completion">
+    <h2>Поздравляем! Вы завершили курс.</h2>
+    <button (click)="downloadCertificate()">Скачать сертификат</button>
   </div>
 </div>

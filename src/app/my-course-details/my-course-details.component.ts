@@ -7,6 +7,7 @@ import { ModuleTestDTO } from '../services/course/module_testDTO';
 import { ModuleTestSubmissionDTO } from '../services/course/module_test_submissionDTO';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-course-details',
@@ -19,13 +20,16 @@ export class MyCourseDetailsComponent implements OnInit {
   course: CourseDTO | null = null;
   selectedModule: any;
   currentUserId: number | null;
+  courseCompleted: boolean = false;
+  certificateGenerated: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private courseService: CourseService,
     private toastr: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {
     this.courseId = this.route.snapshot.params['id'];
     this.currentUserId = this.authService.getCurrentUserId(); // Получение текущего userId из сервиса аутентификации
@@ -54,7 +58,7 @@ export class MyCourseDetailsComponent implements OnInit {
     this.menuHidden = !this.menuHidden;
   }
 
-  testPassed(submissions: ModuleTestSubmissionDTO[] | undefined, userId: number | null): boolean {
+  testPassed(submissions: ModuleTestSubmissionDTO[], userId: number | null): boolean {
     return submissions?.some(submission => submission.user.id === userId && submission.passed) || false;
   }
 
@@ -62,16 +66,14 @@ export class MyCourseDetailsComponent implements OnInit {
     this.selectedModule = module;
   }
 
-  onLessonClick(lesson: LessonDTO): void {
+  onLessonClick(lesson: LessonDTO) {
     this.router.navigate(['/presentation', lesson.fileKey]);
   }
 
-  onTestClick(moduleTest: ModuleTestDTO | undefined): void {
-    if (moduleTest) {
-      this.router.navigate(['/module-test', moduleTest.id], {
-        state: { courseId: this.courseId }
-      });
-    }
+  onTestClick(moduleTest: ModuleTestDTO): void {
+    this.router.navigate(['/module-test', moduleTest.id], {
+      state: { courseId: this.courseId }
+    });
   }
 
   checkIfAllTestsPassed(): void {
@@ -80,7 +82,42 @@ export class MyCourseDetailsComponent implements OnInit {
     ) || false;
 
     if (allTestsPassed) {
+      this.courseCompleted = true;
       this.toastr.success('Поздравляем! Вы успешно сдали все тесты курса.', 'Курс успешно завершен!');
+      this.generateCertificate();
     }
+  }
+
+  generateCertificate(): void {
+    if (!this.certificateGenerated) {
+      const url = `/api/certificates/generate/${this.courseId}/${this.currentUserId}`;
+      this.http.post(url, {}).subscribe(() => {
+        this.certificateGenerated = true;
+      }, error => {
+        console.error('Error generating certificate:', error);
+      });
+    }
+  }
+
+  downloadCertificate(): void {
+    const url = `http://localhost:8080/api/v1/pdfs/download-template`;
+    const body = {
+      courseId: this.courseId,
+      params: [
+        {
+          "COURSE_TITLE": this.course?.name || 'Курс'
+        }
+      ]
+    };
+    this.http.post(url, body, { responseType: 'blob' }).subscribe((blob: Blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = 'certificate.pdf';
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    }, error => {
+      console.error('Error downloading certificate:', error);
+    });
   }
 }

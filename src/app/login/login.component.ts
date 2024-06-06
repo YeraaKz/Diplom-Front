@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
   checkCertificate(): void {
     this.toastr.error("Error: The certificate has expired for this service.");
   }
