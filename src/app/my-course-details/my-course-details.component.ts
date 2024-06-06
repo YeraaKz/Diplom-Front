@@ -3,10 +3,10 @@ import { CourseDTO } from '../services/course/courseDTO';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../services/course/course.service';
 import { LessonDTO } from '../services/course/lessonDTO';
-import {ModuleTestDTO} from "../services/course/module_testDTO";
-import {ModuleTestSubmissionDTO} from "../services/course/module_test_submissionDTO";
-import {ToastrService} from "ngx-toastr";
-import {AuthService} from "../services/auth/auth.service";
+import { ModuleTestDTO } from '../services/course/module_testDTO';
+import { ModuleTestSubmissionDTO } from '../services/course/module_test_submissionDTO';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-my-course-details',
@@ -20,18 +20,15 @@ export class MyCourseDetailsComponent implements OnInit {
   selectedModule: any;
   currentUserId: number | null;
 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private courseService: CourseService,
     private toastr: ToastrService,
     private authService: AuthService
-    ) {
-
+  ) {
     this.courseId = this.route.snapshot.params['id'];
     this.currentUserId = this.authService.getCurrentUserId(); // Получение текущего userId из сервиса аутентификации
-
   }
 
   ngOnInit(): void {
@@ -57,8 +54,7 @@ export class MyCourseDetailsComponent implements OnInit {
     this.menuHidden = !this.menuHidden;
   }
 
-  testPassed(submissions: ModuleTestSubmissionDTO[], userId: number | null): boolean {
-    console.log(submissions[0].user.id);
+  testPassed(submissions: ModuleTestSubmissionDTO[] | undefined, userId: number | null): boolean {
     return submissions?.some(submission => submission.user.id === userId && submission.passed) || false;
   }
 
@@ -66,15 +62,16 @@ export class MyCourseDetailsComponent implements OnInit {
     this.selectedModule = module;
   }
 
-  onLessonClick(lesson: LessonDTO) {
+  onLessonClick(lesson: LessonDTO): void {
     this.router.navigate(['/presentation', lesson.fileKey]);
   }
 
-  onTestClick(moduleTest: ModuleTestDTO): void {
-    console.log(this.courseId)
-    this.router.navigate(['/module-test', moduleTest.id], {
-      state: { courseId: this.courseId }
-    });
+  onTestClick(moduleTest: ModuleTestDTO | undefined): void {
+    if (moduleTest) {
+      this.router.navigate(['/module-test', moduleTest.id], {
+        state: { courseId: this.courseId }
+      });
+    }
   }
 
   checkIfAllTestsPassed(): void {
