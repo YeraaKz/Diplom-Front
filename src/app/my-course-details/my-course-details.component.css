@@ -195,3 +195,70 @@ header nav {
   color: rgb(169, 169, 184);
 }
 
+.course-completed-title{
+  font-size: 32px;
+  background: linear-gradient(159.52deg, rgb(96, 171, 243) 8.93%, rgb(74, 119, 245) 50.34%, rgb(59, 91, 246) 82.55%) text;
+  -webkit-text-fill-color: transparent;
+  color: initial;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.download-btn{
+  outline: none;
+  border: none;
+  color: #fff;
+  display: flex;
+  cursor: pointer;
+  padding: 16px 25px;
+  border-radius: 6px;
+  align-items: center;
+  white-space: nowrap;
+  background: #4A98F7;
+  transition: all 0.2s ease;
+}
+.download-btn:hover{
+  background: #2382f6;
+}
+.download-btn.timer{
+  color: #000;
+  background: none;
+  transition: none;
+
+  pointer-events: none;
+}
+.download-btn.timer b{
+  color: #4A98F7;
+  padding: 0 8px;
+}
+
+.download-btn .text{
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+@media (max-width: 768px) {
+  .lesson-container {
+    width: 100%; /* Занимает всю ширину экрана */
+  }
+
+  .lesson {
+    padding: 15px; /* Уменьшение внутреннего отступа */
+    flex-direction: column; /* Размещаем содержимое по вертикали */
+    align-items: flex-start; /* Выравниваем содержимое по левому краю */
+  }
+
+  .lesson-icon {
+    font-size: 20px; /* Уменьшение размера иконок */
+    margin-right: 0; /* Убираем отступ справа */
+    margin-bottom: 10px; /* Добавляем отступ снизу */
+  }
+
+  .lesson-details h3 {
+    font-size: 16px; /* Уменьшение размера шрифта */
+  }
+
+  .lesson-details span {
+    font-size: 14px; /* Уменьшение размера шрифта */
+  }
+}

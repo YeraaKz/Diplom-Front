@@ -258,6 +258,7 @@ header nav {
   .user-profile {
     justify-content: space-between;
     padding: 10px 0;
+    margin-left: 10px;
   }
 
   .user-name, .user-image {
