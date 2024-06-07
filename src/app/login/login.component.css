@@ -168,3 +168,59 @@ a:hover {
 .dashboard-link:hover {
   background:  #4D2C5E;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+    box-shadow: none;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .image-container,
+  .form-container {
+    flex: none;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .image-container img {
+    display: none;
+  }
+
+  .image-text {
+    max-width: 100%;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .form-container {
+    border-left: none;
+    border-top: 1px solid #ccc;
+  }
+
+  .google-logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .fancy-text::before,
+  .fancy-text::after {
+    width: 80px;
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .image-text {
+    font-size: 18px;
+  }
+
+  .fancy-text::before,
+  .fancy-text::after {
+    width: 60px;
+  }
+}
+
