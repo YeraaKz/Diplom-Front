@@ -4,6 +4,8 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #f4f7f6;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -19,7 +21,9 @@ body {
 h1 {
   margin-bottom: 20px;
   font-size: 2.5em;
-  color: #333;
+  background: linear-gradient(159.52deg, rgb(96, 171, 243) 8.93%, rgb(74, 119, 245) 50.34%, rgb(59, 91, 246) 82.55%) text;
+  -webkit-text-fill-color: transparent;
+  color: initial;
 }
 
 .form {
@@ -38,6 +42,7 @@ h1 {
   display: block;
   margin-bottom: 8px;
   font-weight: 700;
+  color: #000000;
 }
 
 .form-control {
@@ -51,6 +56,7 @@ h1 {
 
 .form-control:focus {
   border-color: #007bff;
+  outline: none;
 }
 
 .btn {
@@ -62,6 +68,11 @@ h1 {
   background-color: #007bff;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .btn:hover {
@@ -96,9 +107,9 @@ h1 {
 
 .loading-spinner {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  height: 100vh;
 }
 
 .spinner {

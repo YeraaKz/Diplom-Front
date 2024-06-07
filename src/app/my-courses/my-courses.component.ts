@@ -46,7 +46,6 @@ export class MyCoursesComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching courses:', error);
-        this.toastr.error('Ошибка получения курсов: ' + (error.message || 'Неизвестная ошибка'));
       }
     );
   }
