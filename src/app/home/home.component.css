@@ -294,6 +294,77 @@
   background-color: #0056b3; /* Slightly lighter blue on hover */
 }
 
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .text-box {
+    flex-basis: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .video-box {
+    flex-basis: 100%;
+    height: 200px; /* Установите фиксированную высоту для видео на маленьких экранах */
+  }
+
+  .courses-section {
+    padding: 20px 10px;
+  }
+
+  .course-categories {
+    flex-direction: column;
+  }
+
+  .category-btn {
+    margin-bottom: 10px;
+  }
+
+  .courses-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial-card {
+    width: 100%;
+    max-width: 300px; /* Максимальная ширина карточки на маленьких экранах */
+  }
+
+  .contact-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .contact-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .name-input, .phone-input, .contact-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .choose-course-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .video-box{
+    display: none;
+  }
+}
 
 
 
