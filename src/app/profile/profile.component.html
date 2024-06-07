@@ -1,5 +1,5 @@
 <div class="profile-container">
-  <div class="back-icon" >
+  <div class="back-icon">
     <i class="fas fa-arrow-left"></i>
   </div>
 
@@ -14,7 +14,7 @@
       </div>
     </div>
     <h1>{{ info.name }}</h1>
-    <div class="edit-icon" >
+    <div class="edit-icon" (click)="enableEditing()">
       <i class="fas fa-pencil-alt"></i>
     </div>
   </div>
@@ -22,10 +22,10 @@
   <div class="profile-lower">
     <div class="profile-info">
       <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="info.username" readonly>
-      <div class="input-container">
-        <input type="password" id="password" [value]="info.password" readonly>
-      </div>
+      <input type="email" id="email" [(ngModel)]="info.email" [readonly]="!isEditing">
+      <label for="username">Username</label>
+      <input type="email" id="username" [(ngModel)]="info.username" [readonly]="!isEditing">
     </div>
+    <button *ngIf="isEditing" class="save-btn" (click)="saveProfile()">Save</button>
   </div>
 </div>

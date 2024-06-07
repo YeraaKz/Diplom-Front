@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CourseDTO} from "../services/course/courseDTO";
 import {CourseService} from "../services/course/course.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-courses',
@@ -13,7 +14,8 @@ export class CoursesComponent {
   searchTerm = '';
   activeLanguage = 'Все';
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService,
+              private toastr: ToastrService) {}
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
@@ -28,7 +30,7 @@ export class CoursesComponent {
         console.log(courses);
       },
       (error) => {
-        alert(error.message);
+        this.toastr.error("Error: The courses not found.");
       }
     );
 
@@ -54,6 +56,6 @@ export class CoursesComponent {
 
   private handleError(error: any): void {
     console.error('Request failed:', error);
-    alert(`Error: ${error.message || 'Unknown error'}`);
+    this.toastr.error("Error: The courses not found.");
   }
 }

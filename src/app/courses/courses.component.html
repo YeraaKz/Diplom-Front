@@ -19,8 +19,8 @@
     </div>
   </div>
 </div>
-<div class="cards" >
-  <div class="card" *ngFor="let course of filteredCoursesList">
+<div class="cards" *ngIf="filteredCoursesList.length > 0; else noCourses">
+  <div class="card" *ngFor="let course of filteredCoursesList" >
     <div class="card-content" [routerLink]="['/course-details', course.id]">
       <h2>{{ course.name }}</h2>
       <p class="price">{{ course.name}} Т/мес</p>
@@ -35,4 +35,13 @@
     </div>
   </div>
 </div>
+
+<ng-template #noCourses>
+  <div class="no-courses">
+    <img src="assets/sad-emoji.png" alt="No Courses Icon" class="no-courses-icon" />
+    <h2>Пока нету курсов в сайте</h2>
+    <p>Похоже, что у вас еще нет доступных курсов. Начните изучение прямо сейчас!</p>
+    <button class="btn start-learning" [routerLink]="['/courses']">Начать изучение</button>
+  </div>
+</ng-template>
 <div class="space-below"></div>

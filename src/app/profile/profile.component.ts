@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../services/token/token-storage.service';
 import { UserService } from '../services/user/user.service'; // Предполагается что сервис назван UserService
@@ -12,6 +12,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChild('fileInput') fileInput: ElementRef;
   info: any = {};
   imageUrl: string;
+  passwordFieldType: string = 'password';
+  isEditing: boolean = false;
   private subscriptions = new Subscription();
 
   constructor(private tokenService: TokenStorageService, private userService: UserService) { }
@@ -22,12 +24,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }));
     this.subscriptions.add(this.tokenService.getUsername().subscribe(username => {
       this.info.username = username;
-      }));
+    }));
+    this.subscriptions.add(this.tokenService.getEmail().subscribe(email => {
+      this.info.email = email;
+    }));
     this.subscriptions.add(this.tokenService.getAuthorities().subscribe(authorities => {
       this.info.authorities = authorities;
     }));
     this.loadUserImage();
-    console.log(this.imageUrl);
   }
 
   onCameraIconClick(): void {
@@ -55,13 +59,29 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }));
   }
 
-  logout() {
-    this.tokenService.signOut();
-    window.location.reload();
+  enableEditing(): void {
+    this.isEditing = true;
+  }
+
+  saveProfile(): void {
+    this.userService.updateProfile({ username: this.info.username, email: this.info.email }).subscribe({
+      next: response => {
+        this.tokenService.saveUsername(this.info.username);
+        this.tokenService.saveEmail(this.info.email);
+        this.isEditing = false;
+        window.location.reload();
+      },
+      error: err => {
+        console.error('Ошибка обновления профиля:', err);
+      }
+    });
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 
+  togglePasswordVisibility(): void {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
 }

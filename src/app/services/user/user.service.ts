@@ -67,7 +67,11 @@ export class UserService {
       'Accept': 'application/json'
     });
 
-    // Отправка данных
     return this.http.post(this. uploadUrl, formData, { headers });
+  }
+
+  updateProfile(info: { username: string, email: string }): Observable<any> {
+    console.log(info)
+    return this.http.patch(`${this.baseUrl}/profile`, info);
   }
 }

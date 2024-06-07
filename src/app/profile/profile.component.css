@@ -1,40 +1,37 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 
-body{
+body {
   font-family: 'Euclid Circular A', sans-serif;
   margin: 0;
   background-color: #fff;
 }
 
 header nav {
-
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .container {
-  max-width: 1200px; /* Set a max-width for the container */
+  max-width: 1200px;
   margin: auto;
-  padding: 0 15px; /* Add some padding on the sides */
+  padding: 0 15px;
 }
 
-
 .logo img {
-  height: 40px; /* Adjust as per the actual logo size */
+  height: 40px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 60px; /* Adjust the space between the links as needed */
+  gap: 60px;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: #333; /* Adjust navbar item color as needed */
-
+  color: #333;
 }
 
 .sign-in-btn {
@@ -48,15 +45,14 @@ header nav {
 }
 
 .sign-in-btn:hover {
-  background-color: #6841a9; /* Darken the button on hover */
+  background-color: #6841a9;
 }
-
 
 .profile-container {
   position: relative;
   width: 100%;
   max-width: 100%;
-  min-height: 50vh; /* Minimum height to fill the viewport */
+  min-height: 50vh;
 }
 
 .back-icon {
@@ -65,47 +61,48 @@ header nav {
   left: 20px;
   font-size: 24px;
   color: white;
+  cursor: pointer;
 }
 
 .profile-upper {
-  background-color: #3078F0; /* Blue background color */
+  background-color: #3078F0;
   padding-top: 100px;
   text-align: center;
-  padding-bottom: 50px; /* Space before the white area starts */
+  padding-bottom: 50px;
 }
 
 .profile-avatar-container {
-  background-color: #3078F0; /* Blue background color */
-  padding: 20px; /* Padding around the avatar container */
+  background-color: #3078F0;
+  padding: 20px;
   display: flex;
-  justify-content: center; /* Center the avatar horizontally */
+  justify-content: center;
 }
 
 .profile-avatar {
-  position: relative; /* Relative position for the positioning of camera icon */
-  display: inline-block; /* To wrap the content inside the div */
-  border-radius: 50%; /* Circle shape */
-  padding: 2px; /* Space around the avatar icon, adjust as needed */
-  background: #fff; /* White background to create border effect */
-  line-height: 0; /* Remove the space around the image */
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 2px;
+  background: #fff;
+  line-height: 0;
 }
 
 .profile-avatar img {
-  width: 100px; /* Adjust size as needed */
-  height: 100px; /* Adjust size as needed */
-  border-radius: 50%; /* Circle shape */
-  object-fit: cover; /* Ensure the image covers the area properly */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .camera-icon {
-  position: absolute; /* Absolute position relative to the profile avatar */
-  bottom: 0; /* Align to the bottom */
-  right: -10px; /* Align to the right */
-  background-color: #fff; /* White background for the camera icon */
-  border-radius: 50%; /* Circle shape */
-  padding: 10px; /* Space around the camera icon */
-  line-height: 0; /* Remove the space around the FontAwesome icon */
-  border: 2px solid #3078F0; /* Blue border to separate it from the user icon */
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  line-height: 0;
+  border: 2px solid #3078F0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,15 +110,11 @@ header nav {
 }
 
 .camera-icon .fas.fa-camera {
-  font-size: 20px; /* Smaller icon size */
-  color: #3078F0; /* Blue icon color */
+  font-size: 20px;
+  color: #3078F0;
 }
 
-.fas.fa-pencil-alt{
-  cursor: pointer;
-}
-
-.back-icon{
+.fas.fa-pencil-alt {
   cursor: pointer;
 }
 
@@ -139,7 +132,7 @@ header nav {
 }
 
 .profile-lower {
-  background-color: white; /* White background color for the lower part */
+  background-color: white;
   padding: 20px;
   margin-top: 40px;
   margin-bottom: 100px;
@@ -147,7 +140,7 @@ header nav {
 
 .profile-info {
   max-width: 400px;
-  margin: 0 auto; /* Center the form */
+  margin: 0 auto;
 }
 
 .profile-info label,
@@ -169,11 +162,39 @@ header nav {
   background-color: transparent;
 }
 
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.input-container input[type="password"],
+.input-container input[type="text"] {
+  border: none;
+  outline: none;
+  padding: 10px 0;
+  margin-right: 10px;
+  color: rgb(169, 169, 184);
+  width: 100%;
+}
+
+.edit-password {
+  position: absolute;
+  right: 0;
+  color: #666;
+  cursor: pointer;
+}
+
+.edit-password:hover {
+  color: #333;
+}
+
 footer {
-  background-color: #F8F8F8; /* Цвет фона футера */
-  color: #333; /* Цвет текста */
-  padding: 20px 0; /* Верхний и нижний отступы */
-  font-size: 14px; /* Размер шрифта */
+  background-color: #F8F8F8;
+  color: #333;
+  padding: 20px 0;
+  font-size: 14px;
 }
 
 .footer-container {
@@ -182,61 +203,46 @@ footer {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; /* Отступы справа и слева */
+  padding: 0 20px;
 }
 
 .footer-nav,
 .footer-social {
   display: flex;
-  gap: 20px; /* Отступы между ссылками */
+  gap: 20px;
 }
 
 .footer-nav a,
 .footer-social a {
-  color: #333; /* Цвет ссылок */
-  text-decoration: none; /* Убрать подчеркивание */
-  transition: color 0.3s; /* Плавное изменение цвета */
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .footer-nav a:hover,
 .footer-social a:hover {
-  color: #007BFF; /* Цвет ссылок при наведении */
+  color: #007BFF;
 }
 
 .footer-text {
   text-align: center;
-  margin-top: 20px; /* Отступ сверху */
+  margin-top: 20px;
 }
 
 .social-link i {
-  font-size: 16px; /* Или другой размер, который вы предпочитаете */
+  font-size: 16px;
 }
 
-
-.input-container {
-  position: relative; /* Для абсолютного позиционирования иконки внутри */
-  display: flex;
-  align-items: center; /* Выровнять иконку карандаша по центру с полем ввода */
-  border-bottom: 1px solid #ccc; /* Серая линия под инпутом */
-}
-
-.input-container input[type="password"] {
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
   border: none;
-  outline: none;
-  padding: 10px 0; /* Отступ сверху и снизу внутри поля ввода */
-  margin-right: 10px; /* Отступ между полем ввода и иконкой */
-  color: rgb(169, 169, 184); /* Цвет текста для поля ввода */
-  width: 100%; /* Поле ввода занимает всю доступную ширину */
-}
-
-.edit-password {
-  position: absolute;
-  right: 0;
-  color: #666; /* Цвет иконки карандаша */
+  border-radius: 5px;
   cursor: pointer;
-}
-
-/* Дополнительные стили для иконки при наведении */
-.edit-password:hover {
-  color: #333;
+  margin-top: 20px;
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
