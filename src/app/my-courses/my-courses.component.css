@@ -202,3 +202,42 @@ progress::-webkit-progress-value {
   background: #0056b3; /* Darker blue on hover */
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .title,
+  .tab-menu {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .tab {
+    margin-right: 20px;
+  }
+
+  .course-card {
+    flex-basis: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+  }
+
+  .no-courses {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .no-courses h2 {
+    font-size: 20px;
+  }
+
+  .no-courses p {
+    font-size: 14px;
+  }
+}
