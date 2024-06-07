@@ -42,3 +42,26 @@ footer {
 .social-link i {
   font-size: 16px; /* Или другой размер, который вы предпочитаете */
 }
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-nav {
+    margin-bottom: 20px; /* Отступ снизу для футер навигации */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-nav a,
+  .footer-social a {
+    font-size: 12px; /* Размер шрифта для мобильных устройств */
+  }
+
+  .footer-text {
+    font-size: 12px; /* Размер шрифта для текста футера на мобильных устройствах */
+  }
+}
