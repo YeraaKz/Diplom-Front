@@ -22,6 +22,7 @@ export class MyCourseDetailsComponent implements OnInit {
   currentUserId: number | null;
   courseCompleted: boolean = false;
   certificateGenerated: boolean = false;
+  is_course_finished: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
