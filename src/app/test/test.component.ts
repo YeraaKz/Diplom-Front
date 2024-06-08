@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 export class TestComponent implements OnInit {
   testForm: FormGroup;
   test: any;
+  isLoading  = false;
 
   constructor(private fb: FormBuilder, private testService: TestService, private toastr: ToastrService, private router: Router) {
   }
@@ -27,6 +28,7 @@ export class TestComponent implements OnInit {
   }
 
   loadTest(testId: number): void {
+    this.isLoading  = true;
     this.testService.getTest(testId).subscribe(test => {
       this.test = test;
       this.shuffleQuestions(this.test.questions); // Shuffle questions
@@ -35,6 +37,7 @@ export class TestComponent implements OnInit {
         selectedOption: [null]
       }));
       this.testForm.setControl('questions', this.fb.array(questionControls));
+      this.isLoading  = false;
     });
   }
 
@@ -58,8 +61,10 @@ export class TestComponent implements OnInit {
       }))
     };
 
+    this.isLoading  = true;
     this.testService.submitTest(submission).subscribe(
       (response: TestResultResponse) => {
+        this.isLoading  = false;
         this.toastr.success('Вы сдали тест', 'Тестирование сдано успешно');
         this.router.navigate(['/test-results'], {
           state: {
@@ -71,6 +76,7 @@ export class TestComponent implements OnInit {
       },
       error => {
         console.error(error);
+        this.isLoading  = false;
         this.toastr.error('Пожалуйста ответте на все вопросы', 'Ошибка');
       }
     );

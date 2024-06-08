@@ -10,6 +10,7 @@ import {NewsService} from "../services/news/news.service";
 })
 export class NewsDetailsComponent {
   news: NewsDTO | undefined;
+  isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,8 +19,10 @@ export class NewsDetailsComponent {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    this.isLoading= true;
     this.newsService.getNewsById(id).subscribe(data => {
       this.news = data;
+      this.isLoading= false;
     });
   }
 }

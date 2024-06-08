@@ -23,8 +23,6 @@ export class ModuleTestResultComponent {
     this.username = state?.username ?? '';
     this.totalQuestions = state?.totalQuestions ?? 0;
     this.courseId = this.router.getCurrentNavigation().extras.state['courseId'];
-
-
   }
 
   ngOnInit(): void {

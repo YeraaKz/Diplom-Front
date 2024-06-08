@@ -15,6 +15,7 @@ export class CourseDetailsComponent implements OnInit {
   course$: Observable<CourseDTO>;
   authority: boolean;
   courseId: number;
+  public isLoading: boolean = true;
   errorMessage = '';
 
   constructor(
@@ -32,11 +33,14 @@ export class CourseDetailsComponent implements OnInit {
     }
 
     console.log(this.courseService.getCourseById(this.courseId));
+    this.isLoading = false;
   }
 
   enrollInCourse(id: number): void {
+    this.isLoading = true;
     this.courseService.enrollUserInCourse(id).subscribe({
       next: (response) => {
+        this.isLoading = false;
         this.toastr.success(`Вы успешно зарегистрированы на курс:`, 'Регистрация успешна');
       },
       error: (error) => {
@@ -45,6 +49,7 @@ export class CourseDetailsComponent implements OnInit {
         } else {
           this.toastr.error(`Ошибка регистрации: ${error.message || 'Неизвестная ошибка'}`, 'Ошибка');
         }
+        this.isLoading = false;
       }
     });
   }

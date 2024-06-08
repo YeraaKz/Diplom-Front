@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="main-section">
 <div *ngIf="isSignedUp; else signupForm">
   Your registration is successful. Please login!
@@ -54,4 +56,5 @@
     </div>
   </div>
 </ng-template>
+</div>
 </div>

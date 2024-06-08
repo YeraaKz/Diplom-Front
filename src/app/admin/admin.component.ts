@@ -3,6 +3,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { UserService } from '../services/user/user.service';
 import {UserRequest} from '../services/user/user-request';
 import {UserUpdateDTO} from '../services/user/user-update.dto';
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -14,22 +15,26 @@ export class AdminComponent implements OnInit {
 
   users: UserRequest[] = [];
   userUpdateDTO: UserUpdateDTO = new UserUpdateDTO();
+  public isLoading: boolean = true;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,  private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this. fetchUsers();
+    this.fetchUsers();
   }
 
   // tslint:disable-next-line:typedef
   deleteUser(userId: number) {
+    this.isLoading = true;
     this.userService.deleteUser(userId).subscribe(
       () => {
-        console.log('User deleted successfully');
         this.fetchUsers();
+        this.isLoading = false;
+        this.toastr.info('User deleted successfully');
       },
       (error) => {
-        console.error('Error deleting user:', error);
+        this.isLoading = false;
+        this.toastr.error('Error deleting user:', error);
       }
     );
   }
@@ -39,23 +44,29 @@ export class AdminComponent implements OnInit {
     this.userService.getAllUsers().subscribe(
       (data) => {
         this.users = data;
+        this.isLoading = false;
+        this.toastr.info('Successfully fetching users');
       },
       (error) => {
-        console.error('Error fetching users:', error);
+        this.isLoading = false;
+        this.toastr.error('Error fetching users:', error);
       }
     );
   }
 
   // tslint:disable-next-line:typedef
   saveChanges() {
+    this.isLoading = true;
     this.userService.saveUser(this.userUpdateDTO)
       .subscribe(
         (response) => {
-          console.log('User saved successfully:', response);
+          this.isLoading = false;
+          this.toastr.info('User saved successfully:', response);
           this.userUpdateDTO = new UserUpdateDTO();
         },
         (error) => {
-          console.error('Error saving user:', error);
+          this.isLoading = false;
+          this.toastr.error('Error saving user:', error);
         }
       );
   }

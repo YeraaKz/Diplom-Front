@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="profile-container">
   <div class="back-icon">
     <i class="fas fa-arrow-left"></i>
@@ -28,4 +30,5 @@
     </div>
     <button *ngIf="isEditing" class="save-btn" (click)="saveProfile()">Save</button>
   </div>
+</div>
 </div>

@@ -31,13 +31,13 @@ import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {NgOptimizedImage} from "@angular/common";
 import { CryptoCheckerComponent } from './crypto-checker/crypto-checker.component';
 import {CryptoService} from "./services/crypto/crypto.service";
-import { LoadingPageComponent } from './loading-page/loading-page.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ModuleTestComponent } from './module-test/module-test.component';
 import { ModuleTestResultComponent } from './module-test-result/module-test-result.component';
 import { NewsComponent } from './news/news.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,11 +65,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyCourseDetailsComponent,
     PdfViewerComponent,
     CryptoCheckerComponent,
-    LoadingPageComponent,
     ModuleTestComponent,
     ModuleTestResultComponent,
     NewsComponent,
     NewsDetailsComponent,
+    LoadingSpinnerComponent,
   ],
     imports: [
       BrowserModule,

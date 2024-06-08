@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="container">
   <div class="contacts">
     <div class="contact-info">
@@ -35,7 +37,7 @@
         </div>
         <div class="form-field">
           <label for="phone">{{ 'phone_label' | translate }}</label>
-          <input type="tel" id="phone" [(ngModel)]="form.phone" name="phone">
+          <input type="tel" id="phone" [(ngModel)]="form.phones" name="phone">
         </div>
         <div class="form-field">
           <label for="message">{{ 'message_label' | translate }}</label>
@@ -47,4 +49,5 @@
       </form>
     </div>
   </div>
+</div>
 </div>

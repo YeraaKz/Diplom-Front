@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="header" *ngIf="course$ | async as course">
   <div class="container" >
     <div class="header-content" >
@@ -72,4 +74,4 @@
     </div>
   </div>
 </div>
-
+</div>

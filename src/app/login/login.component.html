@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="main-section">
 <div *ngIf="isLoggedIn; else loggedOut">
 </div>
@@ -42,4 +44,5 @@
   </div>
 </div>
 </ng-template>
+</div>
 </div>

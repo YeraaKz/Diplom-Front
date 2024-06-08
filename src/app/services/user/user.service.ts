@@ -5,6 +5,7 @@ import { TokenStorageService } from '../token/token-storage.service';
 import {UserRequest} from './user-request';
 import {UserUpdateDTO} from './user-update.dto';
 import {environment} from "../../../environments/environment";
+import {ChangeProfileRequest} from "./change-profile-request";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -70,8 +71,15 @@ export class UserService {
     return this.http.post(this. uploadUrl, formData, { headers });
   }
 
-  updateProfile(info: { username: string, email: string }): Observable<any> {
-    console.log(info)
-    return this.http.patch(`${this.baseUrl}/profile`, info);
+  updateProfile(changeProfileInfo:ChangeProfileRequest): Observable<any> {
+    console.log(changeProfileInfo);
+    const headers = new HttpHeaders({
+      'Accept': 'application/json'
+    });
+    return this.http.patch(`${this.baseUrl}/profile`, changeProfileInfo, { headers });
+  }
+
+  getUserById(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${userId}`);
   }
 }

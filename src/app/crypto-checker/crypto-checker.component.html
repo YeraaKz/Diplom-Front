@@ -1,15 +1,12 @@
-<div *ngIf="loading" class="loading-spinner">
-  <div class="spinner"></div>
-</div>
-
-<div class="container" *ngIf="!loading">
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div class="container" *ngIf="!isLoading">
   <h1>Crypto Checker</h1>
   <form (ngSubmit)="onSubmit()" class="form">
     <div class="form-group">
       <label for="cryptoName">Enter Cryptocurrency Name:</label>
       <input type="text" id="cryptoName" [(ngModel)]="cryptoName" name="cryptoName" class="form-control" required>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="loading">Check</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading">Check</button>
   </form>
 
   <div *ngIf="result" class="result mt-4">

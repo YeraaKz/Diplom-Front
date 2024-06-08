@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="test-container" *ngIf="test">
   <h1 class="test-title">{{ test.testName }}</h1>
   <div *ngFor="let question of test.questions" class="question-container">
@@ -15,4 +17,5 @@
   <div *ngIf="score !== null" class="score-container">
     <h2>Your Score: {{ score }} / {{ test.questions.length }}</h2>
   </div>
+</div>
 </div>

@@ -11,6 +11,7 @@ import {ToastrService} from "ngx-toastr";
 export class CoursesComponent {
   public coursesList: CourseDTO[] = [];
   public filteredCoursesList: CourseDTO[] = [];
+  public isLoading: boolean = true;
   searchTerm = '';
   activeLanguage = 'Все';
 
@@ -27,9 +28,10 @@ export class CoursesComponent {
       (courses: CourseDTO[]) => {
         this.coursesList = courses;
         this.filteredCoursesList = courses;
-        console.log(courses);
+        this.isLoading = false;
       },
       (error) => {
+        this.isLoading = false;
         this.toastr.error("Error: The courses not found.");
       }
     );
@@ -48,8 +50,12 @@ export class CoursesComponent {
       this.courseService.searchCourses(this.searchTerm).subscribe({
         next: (data: CourseDTO[]) => {
           this.filteredCoursesList = data;
+          this.isLoading = false;
         },
-        error: (error) => this.handleError(error)
+        error: (error) => {
+          this.handleError(error)
+          this.isLoading = false;
+        }
       });
     }
   }

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
+  isLoading: boolean = false;
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;
     this.loginInfo = new AuthLoginInfo(this.form.username, this.form.password);
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.getAuthorities().subscribe(roles => {
           this.roles = roles;
         });
+        this.isLoading = false;
 
         this.router.navigate(['/profile']).then(() => {
           location.reload();
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
       error => {
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
+        this.isLoading = false;
         this.toastr.error(this.errorMessage);
       }
     );

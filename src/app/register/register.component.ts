@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   showPassword = false;
+  isLoading  = false;
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
@@ -35,10 +36,12 @@ export class RegisterComponent implements OnInit {
       this.form.email,
       this.form.password);
 
+    this.isLoading = true;
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.isLoading = false;
         this.router.navigate(['/auth/login']);
         this.toastr.success(`Вы успешно прошли регистрацию:`, 'Регистрация успешна');
       },
@@ -46,6 +49,7 @@ export class RegisterComponent implements OnInit {
         this.toastr.error(`Ошибка регистрации: ${error.message || 'Неизвестная ошибка'}`, 'Ошибка');
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
+        this.isLoading = false;
       }
     );
   }

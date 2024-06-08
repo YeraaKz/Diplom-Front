@@ -13,6 +13,7 @@ export class ContactusComponent implements OnInit {
 
   form: any = {};
   private contactInfo: ContactDTO;
+  public isLoading: boolean = false;
 
   constructor(private contactService: ContactService, private toastr: ToastrService) { }
 
@@ -26,13 +27,17 @@ export class ContactusComponent implements OnInit {
       this.form.lastName,
       this.form.email,
       this.form.phones,
-      this.form.message);
+      this.form.message
+    );
 
+    this.isLoading= true;
     this.contactService.saveContact(this.contactInfo).subscribe({
       next: (response) => {
+        this.isLoading = false;
         this.toastr.success(`Вы успешно отправили запрос`, 'Успешно отправлено');
       },
       error: (error) => {
+        this.isLoading = false;
         this.toastr.error(`Ошибка отправки: ${error.message || 'Неизвестная ошибка'}`, 'Ошибка');
       }
     });

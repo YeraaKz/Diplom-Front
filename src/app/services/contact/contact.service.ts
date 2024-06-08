@@ -17,6 +17,7 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   saveContact(contact: ContactDTO): Observable<string> {
+    console.log(contact)
     return this.http.post<string>(`${this.baseUrl}/save`, contact, httpOptions);
   }
 }

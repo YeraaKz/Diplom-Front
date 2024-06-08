@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="container">
   <div class="controls">
     <div class="buttons-container">
@@ -39,9 +41,9 @@
 <ng-template #noCourses>
   <div class="no-courses">
     <img src="assets/sad-emoji.png" alt="No Courses Icon" class="no-courses-icon" />
-    <h2>Пока нету курсов в сайте</h2>
-    <p>Похоже, что у вас еще нет доступных курсов. Начните изучение прямо сейчас!</p>
-    <button class="btn start-learning" [routerLink]="['/courses']">Начать изучение</button>
+    <h2>В сервисе пока курсы не доступны</h2>
+    <button class="btn start-learning" [routerLink]="['/courses']">Обновить страницу</button>
   </div>
 </ng-template>
 <div class="space-below"></div>
+</div>

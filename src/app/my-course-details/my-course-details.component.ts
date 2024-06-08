@@ -22,7 +22,7 @@ export class MyCourseDetailsComponent implements OnInit {
   currentUserId: number | null;
   courseCompleted: boolean = false;
   certificateGenerated: boolean = false;
-  is_course_finished: boolean = false;
+  isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +41,7 @@ export class MyCourseDetailsComponent implements OnInit {
   }
 
   getCourseDetails(courseId: number): void {
+    this.isLoading=true;
     this.courseService.getCourseById(courseId).subscribe(
       (course: CourseDTO) => {
         this.course = course;
@@ -48,9 +49,11 @@ export class MyCourseDetailsComponent implements OnInit {
         if (this.course && this.course.modules.length > 0) {
           this.selectedModule = this.course.modules[0];
         }
+        this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching course details:', error);
+        this.isLoading = false;
+        this.toastr.error('Error fetching course details:', error);
       }
     );
   }
@@ -85,18 +88,6 @@ export class MyCourseDetailsComponent implements OnInit {
     if (allTestsPassed) {
       this.courseCompleted = true;
       this.toastr.success('Поздравляем! Вы успешно сдали все тесты курса.', 'Курс успешно завершен!');
-      this.generateCertificate();
-    }
-  }
-
-  generateCertificate(): void {
-    if (!this.certificateGenerated) {
-      const url = `/api/certificates/generate/${this.courseId}/${this.currentUserId}`;
-      this.http.post(url, {}).subscribe(() => {
-        this.certificateGenerated = true;
-      }, error => {
-        console.error('Error generating certificate:', error);
-      });
     }
   }
 

@@ -17,15 +17,18 @@ export class HomeComponent implements OnInit {
   courses$: Observable<CourseDTO[]>;
   filteredCourses$: Observable<CourseDTO[]>;
   activeCategory: string = 'С нуля';
+  public isLoading: boolean = true;
 
   constructor(private courseService: CourseService, private contactService: ContactService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.courses$ = this.courseService.getAllCourses();
     this.filteredCourses$ = this.courses$;
+    this.isLoading=false;
   }
 
   contactUs(): void {
+    this.isLoading=true;
     this.contactInfo = new ContactDTO(
       this.form.firstName,
       this.form.firstName,
@@ -36,9 +39,11 @@ export class HomeComponent implements OnInit {
 
     this.contactService.saveContact(this.contactInfo).subscribe({
       next: (response) => {
+        this.isLoading=false;
         this.toastr.success(`Вы успешно отправили запрос`, 'Успешно отправлено');
       },
       error: (error) => {
+        this.isLoading=false;
         this.toastr.error(`Ошибка отправки: ${error.message || 'Неизвестная ошибка'}`, 'Ошибка');
       }
     });

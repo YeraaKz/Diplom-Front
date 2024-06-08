@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../services/token/token-storage.service';
-import { UserService } from '../services/user/user.service'; // Предполагается что сервис назван UserService
+import { UserService } from '../services/user/user.service';
+import {ContactDTO} from "../services/contact/contactDTO";
+import {ChangeProfileRequest} from "../services/user/change-profile-request";
+import {ToastrService} from "ngx-toastr"; // Предполагается что сервис назван UserService
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +17,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   imageUrl: string;
   passwordFieldType: string = 'password';
   isEditing: boolean = false;
+  private profileInfo: ChangeProfileRequest;
   private subscriptions = new Subscription();
+  isLoading: boolean = false;
 
-  constructor(private tokenService: TokenStorageService, private userService: UserService) { }
+  constructor(private tokenService: TokenStorageService, private userService: UserService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.subscriptions.add(this.tokenService.getToken().subscribe(token => {
@@ -54,8 +59,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   loadUserImage(): void {
+    this.isLoading = true;
     this.subscriptions.add(this.userService.getUserImage().subscribe(imageUrl => {
       this.imageUrl = imageUrl;
+      this.isLoading = false;
     }));
   }
 
@@ -64,15 +71,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   saveProfile(): void {
-    this.userService.updateProfile({ username: this.info.username, email: this.info.email }).subscribe({
+    console.log(this.info.username);
+    this.profileInfo = new ChangeProfileRequest(this.info.username, this.info.email);
+    this.isLoading = true;
+    this.userService.updateProfile(this.profileInfo).subscribe({
       next: response => {
-        this.tokenService.saveUsername(this.info.username);
-        this.tokenService.saveEmail(this.info.email);
         this.isEditing = false;
-        window.location.reload();
-      },
-      error: err => {
-        console.error('Ошибка обновления профиля:', err);
+        this.isLoading = false;
+        this.toastr.warning('Ваши данные были обновлены. Пожалуйста, пройдите регистрацию заново.');
+        setTimeout(() => {
+          this.tokenService.signOut();
+          window.location.href = 'auth/login';
+        }, 2000);
       }
     });
   }

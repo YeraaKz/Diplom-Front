@@ -8,13 +8,16 @@ import {NewsService} from "../services/news/news.service";
 })
 export class NewsComponent {
   newsList: any[] = [];
+  isLoading: boolean = false;
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.newsService.getAllNews().subscribe(data => {
       this.newsList = data;
       console.log(data);
+      this.isLoading = false;
     });
 
   }

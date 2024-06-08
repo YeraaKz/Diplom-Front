@@ -27,6 +27,8 @@ export class MyCoursesComponent implements OnInit {
 
   }[] = [];
 
+  isLoading: boolean = false;
+
   private currentUserId: number | null;
 
   constructor(private courseService: CourseService,
@@ -40,12 +42,15 @@ export class MyCoursesComponent implements OnInit {
   }
 
   getMyCourses(): void {
+    this.isLoading =  true;
     this.courseService.getMyCourses().subscribe(
       (courses: CourseDTO[]) => {
         this.coursesList = courses.map(course => this.calculateTestProgress(course));
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching courses:', error);
+        this.isLoading = false;
       }
     );
   }

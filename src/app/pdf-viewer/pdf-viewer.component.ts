@@ -21,6 +21,7 @@ import {Subscription} from "rxjs";
 export class PdfViewerComponent {
   pdfSrc: string;
   private subscriptions = new Subscription();
+  isLoading = false;
 
   constructor(private pdfService: PdfService, private route: ActivatedRoute) {}
 
@@ -28,8 +29,10 @@ export class PdfViewerComponent {
     const fileKey = this.route.snapshot.paramMap.get('fileKey');
 
     if (fileKey) {
+      this.isLoading=true
       this.subscriptions.add(this.pdfService.getPdfUrl(fileKey).subscribe(url => {
         this.pdfSrc = url;
+        this.isLoading=false;
       }))
     }
   }

@@ -1,3 +1,5 @@
+<app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
 <div class="sidebar" [class.open]="!menuHidden">
   <button class="menu-button" (click)="toggleMenu()">&#9776;</button>
   <div class="menu-items" [class.hidden]="menuHidden">
@@ -55,4 +57,5 @@
     </div>
   </div>
 
+</div>
 </div>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ModuleTestService} from "../services/module-test/module-test.service";
 import {ToastrService} from "ngx-toastr";
-import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-module-test',
@@ -14,6 +13,7 @@ export class ModuleTestComponent {
   answers: { [key: number]: number } = {};
   score: number | null = null;
   courseId: any;
+  public isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,9 +25,6 @@ export class ModuleTestComponent {
   }
 
   ngOnInit(): void {
-
-
-
     const id = +this.route.snapshot.paramMap.get('id');
 
     if (id) {
@@ -51,8 +48,10 @@ export class ModuleTestComponent {
       }, 0),
       totalQuestions: this.test.questions.length
     };
+    this.isLoading = true;
     this.moduleTestService.submitTestResults(this.test.id, submission).subscribe({
       next: () => {
+        this.isLoading = false;
         this.toastr.success('Вы сдали тест', 'Тестирование сдано успешно');
         this.router.navigate(['/module-test-result'], {
           state: {
