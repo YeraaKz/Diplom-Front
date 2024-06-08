@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {CourseDTO} from '../services/course/courseDTO';
 import {ActivatedRoute} from '@angular/router';
 import {CourseService} from '../services/course/course.service';
@@ -12,11 +12,12 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./course-details.component.css']
 })
 export class CourseDetailsComponent implements OnInit {
+  info: any = {};
   course$: Observable<CourseDTO>;
-  authority: boolean;
+  authority: boolean = false;
   courseId: number;
   public isLoading: boolean = true;
-  errorMessage = '';
+  private subscriptions = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +29,12 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit() {
     this.courseId = +this.route.snapshot.params['id'];
     this.course$ = this.courseService.getCourseById(this.courseId);
-    if (this.tokenStorage.getToken()) {
-          this.authority = true;
+    this.subscriptions.add(this.tokenStorage.getToken().subscribe(token => {
+      this.info.token = token;
+    }));
+
+    if (this.info.token) {
+      this.authority  = true;
     }
 
     console.log(this.courseService.getCourseById(this.courseId));
