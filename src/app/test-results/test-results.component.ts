@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TestResultResponse } from '../services/test/test-result-response';
 
 @Component({
   selector: 'app-test-results',
