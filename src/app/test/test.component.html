@@ -1,21 +1,29 @@
-  <div *ngIf="test" class="test-container">
-    <h2 class="test-title">{{ test.name }}</h2>
-    <form [formGroup]="testForm" (ngSubmit)="onSubmit()" class="test-form">
-      <div formArrayName="questions">
-        <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i" class="question-container">
-          <p class="question-text">{{ test.questions[i].text }}</p>
-          <div class="options-container">
-            <div *ngFor="let option of test.questions[i].options" class="option">
-              <input
-                type="radio"
-                formControlName="selectedOption"
-                [value]="option.index"
-                class="option-input">
-              <label class="option-label">{{ option.text }}</label>
-            </div>
+<div *ngIf="!hasStarted" class="start-container">
+  <div class="start-content">
+    <h1 class="start-heading">Добро пожаловать на тестирование</h1>
+    <p class="start-description">Нажмите кнопку ниже, чтобы начать тест.</p>
+    <button (click)="startTest()" class="start-button">Начать</button>
+  </div>
+</div>
+
+<div *ngIf="test && hasStarted" class="test-container">
+  <h2 class="test-title">{{ test.name }}</h2>
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()" class="test-form">
+    <div formArrayName="questions">
+      <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i" class="question-container">
+        <p class="question-text">{{ test.questions[i].text }}</p>
+        <div class="options-container">
+          <div *ngFor="let option of test.questions[i].options" class="option">
+            <input
+              type="radio"
+              formControlName="selectedOption"
+              [value]="option.index"
+              class="option-input">
+            <label class="option-label">{{ option.text }}</label>
           </div>
         </div>
       </div>
-      <button type="submit" class="submit-button">Submit</button>
-    </form>
-  </div>
+    </div>
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+</div>

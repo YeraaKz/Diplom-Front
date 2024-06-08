@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from '../services/token/token-storage.service';
 import { UserService } from '../services/user/user.service';
-import {ContactDTO} from "../services/contact/contactDTO";
 import {ChangeProfileRequest} from "../services/user/change-profile-request";
 import {ToastrService} from "ngx-toastr"; // Предполагается что сервис назван UserService
 

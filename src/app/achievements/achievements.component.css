@@ -1,52 +1,100 @@
-body{
-  font-family: 'Euclid Circular A', sans-serif;
-  margin: 0;
-  background-color: #f4f4f4;
-}
-
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  padding: 20px;
+  background-color: white;
 }
 
-h1 {
-  margin: 0;
+.achievements-container {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-main {
-  padding: 2em;
+.certificates, .badges {
+  padding: 20px;
 }
 
-.achievements {
+.certificates {
+  width: 40%;
+  border-right: 1px solid #ddd;
+}
+
+.certificates h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.certificates ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.certificates li {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.certificate-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.certificate-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-button, .download-button {
+  padding: 10px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-button:hover, .download-button:hover {
+  background-color: #0056b3;
+}
+
+.badges {
+  width: 60%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1em;
+  justify-content: space-around;
 }
 
 .badge {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1em;
   text-align: center;
-  width: 200px;
+  margin-bottom: 20px;
+  width: 45%;
 }
 
 .badge img {
-  max-width: 100px;
-  margin-bottom: 1em;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .badge h2 {
   font-size: 1.2em;
-  margin: 0.5em 0;
+  margin-bottom: 5px;
 }
 
 .badge p {
-  font-size: 0.9em;
-  color: #555;
+  font-size: 1em;
+  color: #666;
 }
-

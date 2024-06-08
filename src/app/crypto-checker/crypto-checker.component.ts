@@ -21,13 +21,13 @@ export class CryptoCheckerComponent {
         setTimeout(() => {
           this.result = data;
           this.isLoading = false;
-        }, 5000);
+        }, 3000);
       },
       error => {
         setTimeout(() => {
           this.result = error;
           this.isLoading = false;
-        }, 5000);
+        }, 3000);
       }
     );
   }

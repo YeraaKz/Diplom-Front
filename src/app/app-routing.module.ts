@@ -22,6 +22,7 @@ import {ModuleTestComponent} from "./module-test/module-test.component";
 import {ModuleTestResultComponent} from "./module-test-result/module-test-result.component";
 import {NewsComponent} from "./news/news.component";
 import {NewsDetailsComponent} from "./news-details/news-details.component";
+import {AchievementsComponent} from "./achievements/achievements.component";
 
 const routes: Routes = [
   {
@@ -124,6 +125,10 @@ const routes: Routes = [
   {
     path: 'news/:id',
     component: NewsDetailsComponent,
+  },
+  {
+    path: 'achievements',
+    component: AchievementsComponent,
   }
 ];
 

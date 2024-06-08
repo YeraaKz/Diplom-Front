@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CourseDTO} from '../services/course/courseDTO';
 import {ActivatedRoute} from '@angular/router';
