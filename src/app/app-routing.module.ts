@@ -81,8 +81,24 @@ const routes: Routes = [
     component: CoursesComponent
   },
   {
-    path: 'admin',
-    component: AdminComponent
+    path: 'admin/courses',
+    component: AdminCourseComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/courses/:courseId',
+    component: AdminCourseDetailsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/courses/:courseId/modules/:moduleId',
+    component: AdminModuleDetailsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/courses/:courseId/modules/:moduleId/tests/:testId',
+    component: AdminModuleTestDetailsComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'auth/login',
