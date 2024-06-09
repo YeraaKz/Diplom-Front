@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Manage Users</h2>
+  <table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td class="text-center">
+        <button (click)="selectUser(user)" class="btn btn-sm btn-primary mr-2" data-toggle="modal" data-target="#userModal">Edit</button>
+        <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-success" (click)="openCreateUserModal()" data-toggle="modal" data-target="#userModal">Create User</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">{{ isEditing ? 'Edit User' : 'Create User' }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="isEditing ? updateUser() : createUser()">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input [(ngModel)]="selectedUser.username" name="username" id="username" class="form-control" required minlength="2" maxlength="100">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input [(ngModel)]="selectedUser.email" name="email" id="email" class="form-control" required email>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input [(ngModel)]="selectedUser.password" name="password" id="password" type="password" class="form-control" required>
+            </div>
+            <div class="form-group" *ngIf="isEditing">
+              <label for="roles">Roles:</label>
+              <select multiple [(ngModel)]="selectedUser.roles" name="roles" id="roles" class="form-control">
+                <option *ngFor="let role of allRoles" [ngValue]="role">{{role}}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">{{ isEditing ? 'Update' : 'Create' }}</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearSelection()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

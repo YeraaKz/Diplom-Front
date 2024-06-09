@@ -23,6 +23,8 @@ import {ModuleTestResultComponent} from "./module-test-result/module-test-result
 import {NewsComponent} from "./news/news.component";
 import {NewsDetailsComponent} from "./news-details/news-details.component";
 import {AchievementsComponent} from "./achievements/achievements.component";
+import {AdminUsersComponent} from "./admin-users/admin-users.component";
+import {AdminGuard} from "./admin.guard";
 
 const routes: Routes = [
   {
@@ -74,7 +76,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminUsersComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'auth/login',

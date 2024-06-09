@@ -1,0 +1,12 @@
+"<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+  <Code>InvalidArgument</Code>
+  <Message>Unsupported Authorization Type</Message>
+  <ArgumentName>Authorization</ArgumentName>
+  <ArgumentValue>Bearer
+    eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5ZXJuYXIiLCJpYXQiOjE3MTc2OTgwNzUsImV4cCI6MTcxNzc4NDQ3NX0.0ELwpdLcXrjFFgRre5L3EuZ-Kpn23p7I9ta5xS0bGvJG7lpEfBeo6EvzjDTvTkgGjDbtto_QAVyzED17bcqsrg
+  </ArgumentValue>
+  <RequestId>H0B3228M7R5N9RW1</RequestId>
+  <HostId>7N3qoak0/8xpa/QHoXaxhv01QfW2EH7oL2CnkAeI/p6juOYqQIkI3gpGRJaugvsv1u/0T9Ipi5/yPh10siB6hF83wC9Ld726ng03jD7ePJU=
+  </HostId>
+</Error>"

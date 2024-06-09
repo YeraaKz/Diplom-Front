@@ -66,5 +66,4 @@ export class ModuleTestComponent {
       error: (error) => console.error('Error submitting test result', error)
     });
   }
-
 }

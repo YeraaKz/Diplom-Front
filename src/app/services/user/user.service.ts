@@ -6,6 +6,7 @@ import {UserRequest} from './user-request';
 import {UserUpdateDTO} from './user-update.dto';
 import {environment} from "../../../environments/environment";
 import {ChangeProfileRequest} from "./change-profile-request";
+import {UserDTO} from "./userDTO";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -53,6 +54,10 @@ export class UserService {
 
   saveUser(userUpdateDTO: UserUpdateDTO): Observable<any> {
     return this.http.post(this.addUser, userUpdateDTO);
+  }
+
+  updateUser(id: number, userUpdateDTO: UserUpdateDTO): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, userUpdateDTO);
   }
 
   getUserImage(): Observable<string> {

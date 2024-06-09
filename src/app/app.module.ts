@@ -39,6 +39,7 @@ import { NewsComponent } from './news/news.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import {AchievementsComponent} from "./achievements/achievements.component";
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsComponent,
     NewsDetailsComponent,
     LoadingSpinnerComponent,
+    AdminUsersComponent,
   ],
     imports: [
       BrowserModule,

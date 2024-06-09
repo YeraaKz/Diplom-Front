@@ -1,7 +1,7 @@
 export class UserUpdateDTO {
   id: number;
-  username: string;
+  username: String;
   email: string;
-  password: string;
+  password: String;
   roles: string[];
 }
