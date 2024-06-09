@@ -1,121 +1,120 @@
 <app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="!isLoading">
-<div class="container">
-  <div class="hero-container">
-    <div class="text-box">
-      <div class="content">
-        <h1>{{ 'Future in your hands' | translate }}</h1>
-        <p>{{ 'Master the Blockchain in a short time with BlockHub'|translate }}</p>
-        <button class="choose-course-btn" routerLink="/courses" >{{ 'Choose a course'|translate }}</button>
+  <div class="container">
+    <div class="hero-container">
+      <div class="text-box">
+        <div class="content">
+          <h1>{{ 'Future in your hands' | translate }}</h1>
+          <p>{{ 'Master the Blockchain in a short time with BlockHub' | translate }}</p>
+          <button class="choose-course-btn" routerLink="/courses">{{ 'Choose a course' | translate }}</button>
+        </div>
       </div>
-    </div>
-    <div class="video-box">
-      <video class="video-content" autoplay loop muted>
-        <source src="assets/blockchain.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-box">
+        <video class="video-content" autoplay loop muted>
+          <source src="assets/blockchain.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="courses-section">
-    <h2>{{'Our courses'|translate}}</h2>
-    <div class="course-categories">
-      <button class="category-btn"
-              [class.active]="activeCategory === 'С нуля'"
-              (click)="filterCoursesByCategory('С нуля')">{{'From scratch'|translate}}</button>
-      <button class="category-btn"
-              [class.active]="activeCategory === 'Начинающий'"
-              (click)="filterCoursesByCategory('Начинающий')">{{'For beginners'|translate}}</button>
-      <button class="category-btn"
-              [class.active]="activeCategory === 'Продвинутый'"
-              (click)="filterCoursesByCategory('Продвинутый')">{{"Advanced"|translate}}</button>
-    </div>
-    <div class="courses-container">
-      <ng-container *ngIf="filteredCourses$ | async as courses">
-        <div *ngFor="let course of courses | slice:0:3" class="course-card">
-          <div class="course-tag">{{ course.level }}</div>
-          <h3 class="course-title">{{ course.name }}</h3>
-          <div class="course-duration">{{ course.durationInMonths }}</div>
-          <div class="course-format">Online</div>
-          <div class="course-image">
-            <img src="assets/course1.jpg" alt="Project Management">
+  <div class="container">
+    <div class="courses-section">
+      <h2>{{ 'Our courses' | translate }}</h2>
+      <div class="course-categories">
+        <button class="category-btn"
+                [class.active]="activeCategory === 'Все курсы'"
+                (click)="filterCoursesByCategory('Все курсы')">{{ 'From scratch' | translate }}</button>
+        <button class="category-btn"
+                [class.active]="activeCategory === 'Для начинающих'"
+                (click)="filterCoursesByCategory('Для начинающих')">{{ 'For beginners' | translate }}</button>
+        <button class="category-btn"
+                [class.active]="activeCategory === 'Для продвинутых'"
+                (click)="filterCoursesByCategory('Для продвинутых')">{{ 'Advanced' | translate }}</button>
+      </div>
+      <div class="courses-container">
+        <ng-container *ngIf="filteredCourses$ | async as courses">
+          <div *ngFor="let course of courses | slice:0:3" class="course-card" [routerLink]="['/course-details', course.id]">
+            <div class="course-tag">{{ course.level }}</div>
+            <h3 class="course-title">{{ course.name }}</h3>
+            <div class="course-duration">{{ course.durationInMonths }} months</div>
+            <div class="course-format">Online</div>
+            <div class="course-image">
+              <img src="{{course.imageKey}}">
+            </div>
           </div>
-        </div>
-      </ng-container>
-    </div>
-    <div class="view-all-btn-container">
-      <button class="view-all-btn" routerLink="/courses">{{ "View all courses"|translate }}</button>
+        </ng-container>
+      </div>
+      <div class="view-all-btn-container">
+        <button class="view-all-btn" routerLink="/courses">{{ 'View all courses' | translate }}</button>
+      </div>
     </div>
   </div>
-</div>
 
+  <div class="container">
+    <div class="testimonials-section">
+      <h2>{{ 'Alumni Reviews' | translate }}</h2>
+      <div class="testimonial-cards-container">
 
-<div class="container">
-  <div class="testimonials-section">
-    <h2>{{ "Alumni Reviews"|translate }}</h2>
-    <div class="testimonial-cards-container">
-
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="assets/Yerzhan.jpg" alt="Student Name" class="testimonial-image">
-          <div>
-            <h3 class="student-name">Ержан Ашимов</h3>
-            <p class="student-course">курс "Блокчейн в бизнесе"</p>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/Yerzhan.jpg" alt="Student Name" class="testimonial-image">
+            <div>
+              <h3 class="student-name">Ержан Ашимов</h3>
+              <p class="student-course">курс "Блокчейн в бизнесе"</p>
+            </div>
+          </div>
+          <div class="testimonial-text">
+            <p>Курс очень интересный и познавательный. Отдельное спасибо нашему ментору, очень интересно вела курс. Хотелось бы также чтобы были курсы связанные с ...</p>
           </div>
         </div>
-        <div class="testimonial-text">
-          <p>Курс очень интересный и познавательный. Отдельное спасибо нашему ментору, очень интересно вела курс. Хотелось бы также чтобы были курсы связанные с ...</p>
-        </div>
-      </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="assets/Ramazan.jpg" alt="Student Name" class="testimonial-image">
-          <div>
-            <h3 class="student-name">Рамазан Калабай</h3>
-            <p class="student-course">курс "Блокчейн с нуля"</p>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/Ramazan.jpg" alt="Student Name" class="testimonial-image">
+            <div>
+              <h3 class="student-name">Рамазан Калабай</h3>
+              <p class="student-course">курс "Блокчейн с нуля"</p>
+            </div>
+          </div>
+          <div class="testimonial-text">
+            <p>Курс очень интересный и познавательный. Отдельное спасибо нашему ментору, очень интересно вела курс. Хотелось бы также чтобы были курсы связанные с ...</p>
           </div>
         </div>
-        <div class="testimonial-text">
-          <p>Курс очень интересный и познавательный. Отдельное спасибо нашему ментору, очень интересно вела курс. Хотелось бы также чтобы были курсы связанные с ...</p>
-        </div>
-      </div>
 
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="assets/Yernar.jpg" alt="Student Name" class="testimonial-image">
-          <div>
-            <h3 class="student-name">Орысбаев Ернар</h3>
-            <p class="student-course">курс "Продвинутый Блокчейн"</p>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="assets/Yernar.jpg" alt="Student Name" class="testimonial-image">
+            <div>
+              <h3 class="student-name">Орысбаев Ернар</h3>
+              <p class="student-course">курс "Продвинутый Блокчейн"</p>
+            </div>
+          </div>
+          <div class="testimonial-text">
+            <p>Курс очень интересный и познавательный. Отдельное спасибо нашему ментору, очень интересно вела курс. Хотелось бы также чтобы были курсы связанные с ...</p>
           </div>
         </div>
-        <div class="testimonial-text">
-          <p>Курс очень интересный и познавательный. Отдельное спасибо нашему ментору, очень интересно вела курс. Хотелось бы также чтобы были курсы связанные с ...</p>
-        </div>
-      </div>
 
-    </div>
-    <div class="testimonials-navigation">
-      <button class="nav-button prev-button">‹</button>
-      <button class="nav-button next-button">›</button>
+      </div>
+      <div class="testimonials-navigation">
+        <button class="nav-button prev-button">‹</button>
+        <button class="nav-button next-button">›</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="contact-section">
-    <div class="contact-text">
-      <h2>{{ "If you still have questions, we will help you"|translate }}</h2>
-    </div>
-    <form (ngSubmit)="contactUs()" #f="ngForm" novalidate>
-      <div class="contact-form">
-        <input type="text" id="firstName" name="firstName" placeholder="Ваше имя" [(ngModel)]="form.firstName" class="name-input">
-        <input type="tel" id="phone" name="phone" placeholder="+7 (999) 999-99-99" [(ngModel)]="form.phones" class="phone-input">
-        <button type="submit" class="contact-btn">{{ "Contact me"|translate }}</button>
+  <div class="container">
+    <div class="contact-section">
+      <div class="contact-text">
+        <h2>{{ 'If you still have questions, we will help you' | translate }}</h2>
       </div>
-    </form>
+      <form (ngSubmit)="contactUs()" #f="ngForm" novalidate>
+        <div class="contact-form">
+          <input type="text" id="firstName" name="firstName" placeholder="Ваше имя" [(ngModel)]="form.firstName" class="name-input">
+          <input type="tel" id="phone" name="phone" placeholder="+7 (999) 999-99-99" [(ngModel)]="form.phones" class="phone-input">
+          <button type="submit" class="contact-btn">{{ 'Contact me' | translate }}</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </div>

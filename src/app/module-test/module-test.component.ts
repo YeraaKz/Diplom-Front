@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {ModuleTestService} from "../services/module-test/module-test.service";
-import {ToastrService} from "ngx-toastr";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModuleTestService } from '../services/module-test/module-test.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-module-test',
   templateUrl: './module-test.component.html',
-  styleUrl: './module-test.component.css'
+  styleUrls: ['./module-test.component.css']
 })
-export class ModuleTestComponent {
+export class ModuleTestComponent implements OnInit {
   test: any;
   answers: { [key: number]: number } = {};
   score: number | null = null;
@@ -30,7 +30,15 @@ export class ModuleTestComponent {
     if (id) {
       this.moduleTestService.getModuleTest(id).subscribe(test => {
         this.test = test;
+        this.shuffleQuestions(this.test.questions);
       });
+    }
+  }
+
+  shuffleQuestions(questions: any[]): void {
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
     }
   }
 
@@ -61,10 +69,12 @@ export class ModuleTestComponent {
             totalQuestions: submission.totalQuestions,
             courseId: this.courseId
           }
-        })
+        });
       },
-      error: (error) => console.error('Error submitting test result', error)
+      error: (error) => {
+        console.error('Error submitting test result', error);
+        this.isLoading = false;
+      }
     });
   }
-
 }

@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     this.activeCategory = category;
     this.filteredCourses$ = this.courses$.pipe(
       map(courses => courses.filter(course =>
-        category === 'С нуля' ? true : course.level === category
+        category === 'Все курсы' ? true : course.level === category
       ))
     );
   }

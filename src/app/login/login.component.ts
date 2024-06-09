@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   isLoading: boolean = false;
   errorMessage = '';
+  showPassword = false;
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
@@ -36,6 +37,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   onSubmit() {
     this.isLoading = true;
     this.loginInfo = new AuthLoginInfo(this.form.username, this.form.password);
@@ -44,8 +49,8 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.roles);
-        this.tokenStorage.saveId(data.id); // Сохранение ID пользователя
-        this.tokenStorage.saveEmail(data.email); // Сохранение email пользователя
+        this.tokenStorage.saveId(data.id);
+        this.tokenStorage.saveEmail(data.email);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

@@ -48,7 +48,7 @@
 <!--        </div>-->
 
         <button class="submit-btn" type="submit">Login</button>
-        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+        <div *ngIf="isSignUpFailed" class="alert alert-danger">
           Login failed: {{errorMessage}}
         </div>
       </form>

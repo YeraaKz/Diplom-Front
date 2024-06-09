@@ -1,21 +1,21 @@
 <app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="!isLoading">
-<div class="test-container" *ngIf="test">
-  <h1 class="test-title">{{ test.testName }}</h1>
-  <div *ngFor="let question of test.questions" class="question-container">
-    <h2 class="question-title">{{ question.questionText }}</h2>
-    <div class="options-container">
-      <label *ngFor="let option of question.options" class="option-label">
-        <input type="radio" name="question{{ question.id }}"
-               (click)="selectAnswer(question.id, option.id)"
-               [checked]="answers[question.id] === option.id">
-        {{ option.optionText }}
-      </label>
+  <div class="test-container" *ngIf="test">
+    <h1 class="test-title">{{ test.testName }}</h1>
+    <div *ngFor="let question of test.questions" class="question-container">
+      <h2 class="question-title">{{ question.questionText }}</h2>
+      <div class="options-container">
+        <label *ngFor="let option of question.options" class="option-label">
+          <input type="radio" name="question{{ question.id }}"
+                 (click)="selectAnswer(question.id, option.id)"
+                 [checked]="answers[question.id] === option.id">
+          {{ option.optionText }}
+        </label>
+      </div>
+    </div>
+    <button class="submit-button" (click)="submitTest()">Submit Test</button>
+    <div *ngIf="score !== null" class="score-container">
+      <h2>Your Score: {{ score }} / {{ test.questions.length }}</h2>
     </div>
   </div>
-  <button class="submit-button" (click)="submitTest()">Submit Test</button>
-  <div *ngIf="score !== null" class="score-container">
-    <h2>Your Score: {{ score }} / {{ test.questions.length }}</h2>
-  </div>
-</div>
 </div>
