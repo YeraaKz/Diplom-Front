@@ -39,6 +39,8 @@ import { NewsComponent } from './news/news.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import {AchievementsComponent} from "./achievements/achievements.component";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -72,6 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsComponent,
     NewsDetailsComponent,
     LoadingSpinnerComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
     imports: [
       BrowserModule,

@@ -23,6 +23,8 @@ import {ModuleTestResultComponent} from "./module-test-result/module-test-result
 import {NewsComponent} from "./news/news.component";
 import {NewsDetailsComponent} from "./news-details/news-details.component";
 import {AchievementsComponent} from "./achievements/achievements.component";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -129,7 +131,9 @@ const routes: Routes = [
   {
     path: 'achievements',
     component: AchievementsComponent,
-  }
+  },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
 ];
 
 @NgModule({
