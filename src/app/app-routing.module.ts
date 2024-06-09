@@ -23,6 +23,8 @@ import {ModuleTestResultComponent} from "./module-test-result/module-test-result
 import {NewsComponent} from "./news/news.component";
 import {NewsDetailsComponent} from "./news-details/news-details.component";
 import {AchievementsComponent} from "./achievements/achievements.component";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {AdminUsersComponent} from "./admin-users/admin-users.component";
 import {AdminGuard} from "./admin.guard";
 import {AdminCourseComponent} from "./admin-course/admin-course.component";
@@ -79,31 +81,9 @@ const routes: Routes = [
     component: CoursesComponent
   },
   {
-    path: 'admin/users',
-    component: AdminUsersComponent,
-    canActivate: [AdminGuard]
+    path: 'admin',
+    component: AdminComponent
   },
-  {
-    path: 'admin/courses',
-    component: AdminCourseComponent,
-    canActivate: [AdminGuard]
-  },
-  {
-    path: 'admin/courses/:courseId',
-    component: AdminCourseDetailsComponent,
-    canActivate: [AdminGuard]
-  },
-  {
-    path: 'admin/courses/:courseId/modules/:moduleId',
-    component: AdminModuleDetailsComponent,
-    canActivate: [AdminGuard]
-  },
-  {
-    path: 'admin/courses/:courseId/modules/:moduleId/tests/:testId',
-    component: AdminModuleTestDetailsComponent,
-    canActivate: [AdminGuard]
-  },
-
   {
     path: 'auth/login',
     component: LoginComponent
@@ -157,7 +137,9 @@ const routes: Routes = [
   {
     path: 'achievements',
     component: AchievementsComponent,
-  }
+  },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
 ];
 
 @NgModule({

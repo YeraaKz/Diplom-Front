@@ -19,6 +19,8 @@ export class AuthService {
   private loginUrl = environment.loginUrl;
   private signupUrl = environment.signupUrl;
 
+  private apiUrl = 'http://localhost:8080/api/v1/auth';
+
   constructor(private http: HttpClient) { }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
@@ -32,5 +34,13 @@ export class AuthService {
   getCurrentUserId(): number | null {
     const userId = sessionStorage.getItem('AuthId');
     return userId ? parseInt(userId) : null;
+  }
+
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, { token, newPassword });
   }
 }
