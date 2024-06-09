@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Тест Модуля</h2>
+  <div *ngIf="moduleTest">
+    <h3>{{ moduleTest.testName }}</h3>
+    <div *ngFor="let question of moduleTest.questions">
+      <p>{{ question.questionText }}</p>
+      <ul>
+        <li *ngFor="let option of question.options">{{ option.optionText }} (Correct: {{ option.isCorrect }})</li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="!moduleTest">
+    <p>Пока для модуля нет теста</p>
+  </div>
+
+  <div class="mt-5">
+    <h4>Добавить вопрос</h4>
+    <form (ngSubmit)="addQuestion()">
+      <div class="form-group">
+        <label for="questionText">Вопрос:</label>
+        <input [(ngModel)]="newQuestion.questionText" name="questionText" id="questionText" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+  </div>
+
+  <div class="mt-5" *ngIf="moduleTest">
+    <h4>Добавить вариянт ответа:</h4>
+    <form (ngSubmit)="addOption()">
+      <div class="form-group">
+        <label for="question">Выбрать вопрос:</label>
+        <select [(ngModel)]="selectedQuestionId" name="question" id="question" class="form-control" required>
+          <option *ngFor="let question of moduleTest.questions" [value]="question.id">{{ question.questionText }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="optionText">Вариант ответа</label>
+        <input [(ngModel)]="newOption.optionText" name="optionText" id="optionText" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="isCorrect">Правильный ли ответ?</label>
+        <div class="checkbox-container">
+          <input type="checkbox" [(ngModel)]="newOption.isCorrect" name="isCorrect" id="isCorrect">
+          <p>Да</p>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+  </div>
+</div>

@@ -40,6 +40,10 @@ import { NewsDetailsComponent } from './news-details/news-details.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import {AchievementsComponent} from "./achievements/achievements.component";
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminCourseComponent } from './admin-course/admin-course.component';
+import { AdminCourseDetailsComponent } from './admin-course-details/admin-course-details.component';
+import { AdminModuleDetailsComponent } from './admin-module-details/admin-module-details.component';
+import { AdminModuleTestDetailsComponent } from './admin-module-test-details/admin-module-test-details.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -74,6 +78,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsDetailsComponent,
     LoadingSpinnerComponent,
     AdminUsersComponent,
+    AdminCourseComponent,
+    AdminCourseDetailsComponent,
+    AdminModuleDetailsComponent,
+    AdminModuleTestDetailsComponent
   ],
     imports: [
       BrowserModule,

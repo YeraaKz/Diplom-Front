@@ -77,6 +77,7 @@ export class AdminUsersComponent implements OnInit {
 
   clearSelection() {
     this.selectedUser = { id: 0, username: '', email: '', password: '', roles: [] };
+    $('#userModal').modal('hide'); // Закрываем модальное окно после обновления
     this.isEditing = false;
   }
 

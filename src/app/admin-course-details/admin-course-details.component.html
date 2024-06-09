@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Детали Курса</h2>
+  <div>
+    <h3>{{ course?.name }}</h3>
+    <p>{{ course?.description }}</p>
+    <p>Сложность: {{ course?.level }}</p>
+    <p>Язык: {{ course?.language }}</p>
+    <p>Длительность: {{ course?.durationInMonths }} месяцев</p>
+  </div>
+  <div>
+    <h4>Модули</h4>
+    <table class="table table-hover table-bordered">
+      <thead class="thead-dark">
+      </thead>
+      <tbody>
+      <tr *ngFor="let module of course?.modules" style="cursor: pointer;" (click)="viewModuleDetails(module.id)">
+        <td>{{ module.title }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-5">
+    <h4>Добавить Модуль</h4>
+    <form (ngSubmit)="addModule()">
+      <div class="form-group">
+        <label for="title">Название:</label>
+        <input [(ngModel)]="newModule.title" name="title" id="title" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+  </div>
+</div>

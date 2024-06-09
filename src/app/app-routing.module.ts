@@ -25,6 +25,10 @@ import {NewsDetailsComponent} from "./news-details/news-details.component";
 import {AchievementsComponent} from "./achievements/achievements.component";
 import {AdminUsersComponent} from "./admin-users/admin-users.component";
 import {AdminGuard} from "./admin.guard";
+import {AdminCourseComponent} from "./admin-course/admin-course.component";
+import {AdminCourseDetailsComponent} from "./admin-course-details/admin-course-details.component";
+import {AdminModuleDetailsComponent} from "./admin-module-details/admin-module-details.component";
+import {AdminModuleTestDetailsComponent} from "./admin-module-test-details/admin-module-test-details.component";
 
 const routes: Routes = [
   {
@@ -75,10 +79,31 @@ const routes: Routes = [
     component: CoursesComponent
   },
   {
-    path: 'admin',
+    path: 'admin/users',
     component: AdminUsersComponent,
     canActivate: [AdminGuard]
   },
+  {
+    path: 'admin/courses',
+    component: AdminCourseComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/courses/:courseId',
+    component: AdminCourseDetailsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/courses/:courseId/modules/:moduleId',
+    component: AdminModuleDetailsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/courses/:courseId/modules/:moduleId/tests/:testId',
+    component: AdminModuleTestDetailsComponent,
+    canActivate: [AdminGuard]
+  },
+
   {
     path: 'auth/login',
     component: LoginComponent

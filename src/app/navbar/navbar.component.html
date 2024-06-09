@@ -35,7 +35,8 @@
         <a routerLink="/crypto-checker">Проверка</a>
         <a routerLink="/achievements">Достижения</a>
         <a routerLink="/courses">Все курсы</a>
-        <a routerLink="/admin" *ngIf="authority == 'admin'">Админ</a>
+        <a routerLink="/admin/users" *ngIf="authority == 'admin'">Админ(Пользователи)</a>
+        <a routerLink="/admin/courses" *ngIf="authority == 'admin'">Админ(Курсы)</a>
         <a routerLink="/my-purchases" (click)="logout()">{{ "Logout"|translate }}</a>
       </div>
       <button *ngIf="!authority" routerLink="auth/login" class="sign-in-btn">{{"Sign in"|translate}}</button>

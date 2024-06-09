@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Детали Модуля</h2>
+  <div>
+    <h3>{{ module?.title }}</h3>
+  </div>
+  <div>
+    <h4>Lessons</h4>
+    <table class="table table-hover table-bordered">
+      <thead class="thead-dark">
+      </thead>
+      <tbody>
+      <tr *ngFor="let lesson of module?.lessons">
+        <td>{{ lesson.title }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-5" *ngIf="module?.moduleTest">
+    <h4>Тест модуля</h4>
+    <div>
+      <h5>{{ module.moduleTest.testName }}</h5>
+      <button class="btn btn-primary" (click)="viewTestDetails(module.moduleTest.id)">Настроить Тест</button>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h4>Добавить лекцию</h4>
+    <form (ngSubmit)="addLesson()">
+      <div class="form-group">
+        <label for="lessonTitle">Название:</label>
+        <input [(ngModel)]="newLesson.title" name="lessonTitle" id="lessonTitle" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="file"></label>
+        <input id="file" type="file" (change)="onFileChange($event)" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+  </div>
+
+  <div class="mt-5">
+    <h4>Добавить тест модуля</h4>
+    <form (ngSubmit)="addModuleTest()">
+      <div class="form-group">
+        <label for="testName">Название:</label>
+        <input [(ngModel)]="newModuleTest.testName" name="testName" id="testName" class="form-control" required>
+      </div>
+      <!-- Add inputs for questions and options here as needed -->
+      <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+  </div>
+</div>
