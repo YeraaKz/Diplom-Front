@@ -29,7 +29,14 @@
 <!--      </div>-->
 
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6">
+      <div class="input-group">
+        <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" class="form-control">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+            <i class="fa" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+          </button>
+        </div>
+      </div>
 <!--      <div *ngIf="f.submitted && password.invalid">-->
 <!--        <div *ngIf="password.errors?.required">Password is required</div>-->
 <!--        <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>-->

@@ -42,14 +42,14 @@ export class RegisterComponent implements OnInit {
         this.isSignedUp = true;
         this.isSignUpFailed = false;
         this.isLoading = false;
-        this.router.navigate(['/auth/login']);
         this.toastr.success(`Вы успешно прошли регистрацию:`, 'Регистрация успешна');
+        this.router.navigate(['/auth/login']);
       },
       error => {
-        this.toastr.error(`Ошибка регистрации: ${error.message || 'Неизвестная ошибка'}`, 'Ошибка');
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
         this.isLoading = false;
+        this.toastr.error(`Ошибка регистрации: ${error.message || 'Неизвестная ошибка'}`, 'Ошибка');
       }
     );
   }
