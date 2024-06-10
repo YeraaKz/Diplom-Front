@@ -82,9 +82,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.tokenService.signOut();
           window.location.href = 'auth/login';
         }, 2000);
+      },
+      error: error => {
+        this.isLoading = false;
+        this.toastr.error('Произошла ошибка при обновлении профиля. ', error.error.message);
+        console.error('Error updating profile:', error);
       }
     });
   }
+
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

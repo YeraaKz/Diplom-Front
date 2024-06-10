@@ -159,8 +159,14 @@ const routes: Routes = [
     path: 'achievements',
     component: AchievementsComponent,
   },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
+  },
 ];
 
 @NgModule({

@@ -1,55 +1,56 @@
 <app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="!isLoading">
-<div class="main-section">
-<div *ngIf="isLoggedIn; else loggedOut">
-</div>
-
-<ng-template #loggedOut>
-<div class="container">
-  <div class="image-container">
-    <div class="image-text">
-      Welcome to BlockHub Learning Platform
+  <div class="main-section">
+    <div *ngIf="isLoggedIn; else loggedOut">
     </div>
-    <img src="assets/login3.png" alt="Login Image" class="login-image">
-  </div>
-  <div class="form-container">
-    <div class="items-center">
-      <button class="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
-              (click)="checkCertificate()">
-        <img class="google-logo" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
-        <span>Login with Google</span>
-      </button>
-    </div>
-    <p class="fancy-text">Or login with your username</p>
-    <form (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" [(ngModel)]="form.username" #username="ngModel" required>
-<!--      <div *ngIf="f.submitted && username.invalid">-->
-<!--        <div *ngIf="username.errors?.required">Username is required</div>-->
-<!--      </div>-->
 
-      <label for="password">Password</label>
-      <div class="input-group">
-        <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" class="form-control">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
-            <i class="fa" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
-          </button>
+    <ng-template #loggedOut>
+      <div class="container">
+        <div class="image-container">
+          <div class="image-text">
+            Welcome to BlockHub Learning Platform
+          </div>
+          <img src="assets/login3.png" alt="Login Image" class="login-image">
+        </div>
+        <div class="form-container">
+          <div class="items-center">
+            <button class="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+                    (click)="checkCertificate()">
+              <img class="google-logo" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
+              <span>Login with Google</span>
+            </button>
+          </div>
+          <p class="fancy-text">Or login with your username</p>
+          <form (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" [(ngModel)]="form.username" #username="ngModel" required>
+            <!--      <div *ngIf="f.submitted && username.invalid">-->
+            <!--        <div *ngIf="username.errors?.required">Username is required</div>-->
+            <!--      </div>-->
+
+            <label for="password">Password</label>
+            <div class="input-group">
+              <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+                  <i class="fa" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+                </button>
+              </div>
+            </div>
+            <!--      <div *ngIf="f.submitted && password.invalid">-->
+            <!--        <div *ngIf="password.errors?.required">Password is required</div>-->
+            <!--        <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>-->
+            <!--      </div>-->
+
+            <button class="submit-btn" type="submit">Login</button>
+            <button class="forgot-password-btn" type="button" (click)="onForgotPassword()">Forgot Password</button>
+            <div *ngIf="isLoginFailed" class="alert alert-danger">
+              Login failed: {{errorMessage}}
+            </div>
+          </form>
+          <p>Don't have an account? <a [routerLink]="['/signup']">Sign Up</a></p>
         </div>
       </div>
-<!--      <div *ngIf="f.submitted && password.invalid">-->
-<!--        <div *ngIf="password.errors?.required">Password is required</div>-->
-<!--        <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>-->
-<!--      </div>-->
-
-      <button class="submit-btn" type="submit">Login</button>
-      <div *ngIf="isLoginFailed" class="alert alert-danger">
-        Login failed: {{errorMessage}}
-      </div>
-    </form>
-    <p>Don't have an account? <a [routerLink]="['/signup']">Sign Up</a></p>
+    </ng-template>
   </div>
-</div>
-</ng-template>
-</div>
 </div>

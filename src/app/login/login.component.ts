@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage = '';
   showPassword = false;
+  showForgotPasswordForm = false;
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
@@ -76,4 +77,9 @@ export class LoginComponent implements OnInit {
   checkCertificate(): void {
     this.toastr.error("Error: The certificate has expired for this service.");
   }
+
+  onForgotPassword() {
+    this.router.navigate(['/forgot-password']);
+  }
+
 }
