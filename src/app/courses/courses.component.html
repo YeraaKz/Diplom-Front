@@ -25,7 +25,7 @@
   <div class="card" *ngFor="let course of filteredCoursesList" >
     <div class="card-content" [routerLink]="['/course-details', course.id]">
       <h2>{{ course.name }}</h2>
-      <p class="price">{{ course.name}} Т/мес</p>
+      <p class="price">Успейте записаться</p>
       <p class="duration">{{ course.durationInMonths }} months</p>
       <div class="info">
         <p>{{ course.level }}</p>
