@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CertificateInfoDTO} from "../certificate/сertificateInfoDTO";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QrcodeserviceService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/qrcode/image';
+  private apiUrl = environment.qrImageUrl;
 
   constructor(private http: HttpClient) { }
 

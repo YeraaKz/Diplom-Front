@@ -8,6 +8,7 @@ import { ModuleTestSubmissionDTO } from '../services/course/module_test_submissi
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-my-course-details',
@@ -92,7 +93,7 @@ export class MyCourseDetailsComponent implements OnInit {
   }
 
   downloadCertificate(): void {
-    const url = `http://localhost:8080/api/v1/pdfs/download-template`;
+    const url = environment.qrUrl;
     const body = {
       courseId: this.courseId,
       params: [

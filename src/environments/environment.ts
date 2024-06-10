@@ -17,5 +17,7 @@ export const environment = {
   uploadUrl: 'http://localhost:8080/api/v1/user/upload',
   baseUrl: 'http://localhost:8080/api/v1/user',
   newsUrl: 'http://localhost:8080/api/v1/news',
+  qrUrl: 'http://localhost:8080/api/v1/pdfs/download-template',
+  qrImageUrl: 'http://localhost:8080/api/v1/qrcode/image'
 
 };

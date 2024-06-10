@@ -17,4 +17,7 @@ export const environment = {
   uploadUrl: 'https://educationplatform-juhi.onrender.com/api/v1/user/upload',
   baseUrl: 'https://educationplatform-juhi.onrender.com/api/v1/user',
   newsUrl: 'https://educationplatform-juhi.onrender.com/api/v1/news',
+  qrUrl: 'https://educationplatform-juhi.onrender.com/api/v1/pdfs/download-template',
+  qrImageUrl: 'https://educationplatform-juhi.onrender.com/api/v1/qrcode/image'
+
 };
