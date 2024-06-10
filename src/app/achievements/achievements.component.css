@@ -1,4 +1,4 @@
-.container {
+.achievements-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -7,22 +7,9 @@
   background-color: white;
 }
 
-.achievements-container {
-  display: flex;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.certificates, .badges {
-  padding: 20px;
-}
-
 .certificates {
-  width: 40%;
-  border-right: 1px solid #ddd;
+  width: 60%;
+  padding: 20px;
 }
 
 .certificates h2 {
@@ -30,33 +17,50 @@
   margin-bottom: 10px;
 }
 
-.certificates ul {
+.certificates-list {
   list-style-type: none;
   padding: 0;
 }
 
-.certificates li {
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+.certificate-card {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-image img {
+  margin-right: 15px;
+}
+
+.certificate-details {
+  flex-grow: 1;
 }
 
 .certificate-title {
   font-size: 1.2em;
-  margin-bottom: 10px;
+  margin: 0 0 5px;
   color: #333;
+}
+
+.certificate-university {
+  margin: 0;
+  color: #777;
 }
 
 .certificate-actions {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
-.view-button, .download-button {
-  padding: 10px;
+.view-button, .download-button, .linkedin-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
   font-size: 1em;
   color: #fff;
   background-color: #007bff;
@@ -66,38 +70,22 @@
   transition: background-color 0.3s;
 }
 
+.linkedin-button {
+  background-color: #0077b5;
+}
+
+.linkedin-button img {
+  margin-right: 10px;
+}
+
 .view-button:hover, .download-button:hover {
   background-color: #0056b3;
 }
 
-.badges {
-  width: 60%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.linkedin-button:hover {
+  background-color: #005580;
 }
 
-.badge {
-  text-align: center;
-  margin-bottom: 20px;
-  width: 45%;
-}
-
-.badge img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.badge h2 {
-  font-size: 1.2em;
-  margin-bottom: 5px;
-}
-
-.badge p {
-  font-size: 1em;
-  color: #666;
-}
 
 /* Modal Styles */
 .modal {
